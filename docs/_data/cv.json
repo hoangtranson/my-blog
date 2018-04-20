@@ -1,29 +1,29 @@
 {
   "basics": {
-    "name": "Dugan Nash",
-    "label": "Very extravagant man",
+    "name": "Soobin Hoang Tran",
+    "label": "Frontend Engineering and Software Philosopher",
     "picture": "",
-    "email": "dugan.hash@mailinator.com",
-    "phone": "(555) 555-5555",
-    "website": "https://towlettepettetuc.ci",
-    "summary": "Nash is well versed in the Montoyan / Artesian Connection, preparation of grasshopper mash, and baking of grover loaves.",
+    "email": "hayden.tran.d@gmail.com",
+    "phone": "(+84) 975 960 808",
+    "website": "https://hoangtranson.github.io/index",
+    "summary": "Front-end Engineering with over 4 years experience in software development and i am passionated in Javascript.",
     "location": {
-      "address": "123 Sesame Street",
-      "postalCode": "CA 94115",
-      "city": "San Francisco",
-      "countryCode": "US",
-      "region": "California"
+      "address": "Go Vap",
+      "postalCode": "700000",
+      "city": "Ho Chi Minh city",
+      "countryCode": "VN",
+      "region": "VietNam"
     },
     "profiles": [
       {
-        "network": "Twitter",
-        "username": "Towlette_Pettetucci",
-        "url": "https://twitter.com/Towlette_Pettetucci"
+        "network": "Facebook",
+        "username": "Soobin Hoang Tran",
+        "url": "https://www.facebook.com/hayden.tran.2"
       },
       {
-        "network": "SoundCloud",
-        "username": "Towlette_Pettetucci",
-        "url": "https://soundcloud.com/Towlette_Pettetucci"
+        "network": "Linkedin",
+        "username": "Soobin Hoang Tran",
+        "url": "https://www.linkedin.com/in/tran-hoang-150611103/"
       }
     ]
   },
@@ -70,10 +70,10 @@
   ],
   "awards": [
     {
-      "title": "Warble Pioneer Award",
-      "date": "2001-11-01",
+      "title": "Championship 2018 PYCO Ping-Pong Tournament",
+      "date": "19/04/2018",
       "awarder": "Levi Goulet",
-      "summary": "Have you seen my turtle?"
+      "summary": "Championship 2018 PYCO Ping-Pong Tournament in Double category"
     }
   ],
   "publications": [
@@ -106,8 +106,12 @@
   ],
   "languages": [
     {
-      "language": "Nonsense",
+      "language": "VietNamese",
       "fluency": "Native speaker"
+    },
+    {
+      "language": "English",
+      "fluency": "Advanced level"
     }
   ],
   "interests": [
