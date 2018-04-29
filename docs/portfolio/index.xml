@@ -6,10 +6,20 @@
     <description>Recent content in Portfolios on Soobin Hoang Tran Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 27 Apr 2018 15:00:00 +0700</lastBuildDate>
+    <lastBuildDate>Sun, 29 Apr 2018 20:00:00 +0700</lastBuildDate>
     
 	<atom:link href="https://hoangtranson.github.io/my-blog/portfolio/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>How to have comment on your content</title>
+      <link>https://hoangtranson.github.io/my-blog/portfolio/work2/</link>
+      <pubDate>Sun, 29 Apr 2018 20:00:00 +0700</pubDate>
+      
+      <guid>https://hoangtranson.github.io/my-blog/portfolio/work2/</guid>
+      <description>&lt;p&gt;After Creating my awesome website to public it and I just wonder how to add comment on that.
+&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>How To Create A Blog and Deploy to Github</title>
