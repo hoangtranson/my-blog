@@ -68,6 +68,8 @@ NOTE: a good question for newbie is where should I get this link https://github.
 
 ![public link to my repositoty][3]
 
+Read this [Project Structure](https://gohugo.io/getting-started/directory-structure/) to learn the Hugo prjoject structure.
+
 Step 3 : Push your code to **Github Repository**
 ```
 git status
@@ -79,13 +81,73 @@ git push origin master
 
 #### Integrate Theme <a name="integrate-theme"></a>
 
-Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+In this section. I gonna introduce you guys a simple way to have a perfect theme(UI - user interface) for your site.
+
+[Hugo themes website](https://themes.gohugo.io/) a good place to start with.
+
+we pick the theme from site above click on **Download** button to go to theme source.
+
+![porfolio theme][5]
+
+![porfolio theme on Github][6]
+
+There are two ways to get the source code. But, I perfer use download as ZIP file and put it in theme folder.
+
+![store theme to theme folder][7]
+
+Then we must to add `publishDir = "docs"` to config.toml file since this is a way to help Github host regconize your site and public it globally.
+
+![must do config][8]
 
 #### Deployment to Github page <a name="deployment"></a>
 
-Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+This is the most imporant section that we wanna learn about. All stuff we made above is to push your site on internet.
+
+There are so many way to push your site on internet. But, to me as a developer i perfer Github as a simple way to do. It support hosting already,
+
+First I create a **deploy.sh** (I copied it from this [site](https://gohugo.io/hosting-and-deployment/hosting-on-github/)) file that run on terminal
+
+```
+#!/bin/bash
+
+echo -e "\033[0;32mDeploying updates to GitHub...\033[0m"
+
+# Build the project.
+hugo -t hugo-creative-portfolio-theme-master  # if using a theme, replace with `hugo -t <YOURTHEME>`
+
+# Go To Public folder
+cd public
+# Add changes to git.
+git add .
+
+# Commit changes.
+msg="rebuilding site `date`"
+if [ $# -eq 1 ]
+  then msg="$1"
+fi
+git commit -m "$msg"
+
+# Push source and build repos.
+git push origin master
+
+# Come Back up to the Project Root
+cd ..
+```
+
+then I open Terminal and type `./deploy.sh` this will auto create docs folder and push your code to Github source.
+
+Secondly, On your Github repo. Go to **Setting** and scroll down to the bottom you will see **Github pages** section. Choose **master branch/docs folder** option.
+
+![project setting on github][9]
+
+DONE! click on Your site is published at [https://hoangtranson.github.io/my-blog/](Your site is published at https://hoangtranson.github.io/my-blog/) to go to your website and enjoy cup of coffee.
 
 [1]: /my-blog/img/portfolio/content1/my-Blog.jpg
 [2]: /my-blog/img/portfolio/content1/step1.jpg
 [3]: /my-blog/img/portfolio/content1/step2.jpg
 [4]: /my-blog/img/portfolio/content1/step3.jpg
+[5]: /my-blog/img/portfolio/content1/theme_site.jpg
+[6]: /my-blog/img/portfolio/content1/theme_source.jpg
+[7]: /my-blog/img/portfolio/content1/place_to_store_theme.jpg
+[8]: /my-blog/img/portfolio/content1/must_do_config.jpg
+[9]: /my-blog/img/portfolio/content1/project_setting.jpg
