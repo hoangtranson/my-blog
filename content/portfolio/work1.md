@@ -136,9 +136,11 @@ cd ..
 
 then I open Terminal and type `./deploy.sh` this will auto create docs folder and push your code to Github source.
 
+![deploy command on terminal][9]
+
 Secondly, On your Github repo. Go to **Setting** and scroll down to the bottom you will see **Github pages** section. Choose **master branch/docs folder** option.
 
-![project setting on github][9]
+![project setting on github][10]
 
 DONE! click on Your site is published at [https://hoangtranson.github.io/my-blog/](Your site is published at https://hoangtranson.github.io/my-blog/) to go to your website and enjoy cup of coffee.
 
@@ -150,4 +152,5 @@ DONE! click on Your site is published at [https://hoangtranson.github.io/my-blog
 [6]: /my-blog/img/portfolio/content1/theme_source.jpg
 [7]: /my-blog/img/portfolio/content1/place_to_store_theme.jpg
 [8]: /my-blog/img/portfolio/content1/must_do_config.jpg
-[9]: /my-blog/img/portfolio/content1/project_setting.jpg
+[9]: /my-blog/img/portfolio/content1/deploy_blog.jpg
+[10]: /my-blog/img/portfolio/content1/project_setting.jpg
