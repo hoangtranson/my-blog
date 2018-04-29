@@ -2,7 +2,7 @@
 <html lang="en-us">
 <head><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>Name of the work 1</title>
+<title>How To Create A Blog and Deploy to Github</title>
 <meta name="description" content="Frontend blog">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="all,follow">
@@ -29,6 +29,13 @@
 <link href="https://hoangtranson.github.io/my-blog/css/custom.css" rel="stylesheet">
 <link rel="shortcut icon" href="https://hoangtranson.github.io/my-blog/img/favicon.png">
 
+
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-118292467-1', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='//www.google-analytics.com/analytics.js'></script>
 
 </head>
 <body>
@@ -109,35 +116,145 @@
   <div class="row">
     <div class="col-lg-8">
       <div class="content-column-content">
-         <h1>Name of the work 1</h1>
-         <p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life. One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar.
+         <h1>How To Create A Blog and Deploy to Github</h1>
+         <p>I ve just configured out recently how to create a site and deploy it to github hosting.
 </p>
 
-<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
+<p><img src="/my-blog/img/portfolio/content1/my-Blog.jpg" alt="My blog" /></p>
 
-<p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
-
-<ol>
-<li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</li>
-<li>Aliquam tincidunt mauris eu risus.</li>
-</ol>
-
-<blockquote>
-<p>The Big Oxmox advised her not to do so, because there were thousands of bad Commas, wild Question Marks and devious Semikoli, but the Little Blind Text didn&rsquo;t listen. She packed her seven versalia, put her initial into the belt and made herself on the way.</p>
-</blockquote>
-
-<h2 id="header-level-2">Header Level 2</h2>
-
-<p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar.</p>
-
-<p>The Big Oxmox advised her not to do so, because there were thousands of bad Commas, wild Question Marks and devious Semikoli, but the Little Blind Text didn&rsquo;t listen. She packed her seven versalia, put her initial into the belt and made herself on the way.</p>
+<h3 id="my-table-of-content">My Table of content</h3>
 
 <ul>
-<li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</li>
-<li>Aliquam tincidunt mauris eu risus.</li>
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#setup-project">Set Up Project</a></li>
+<li><a href="#integrate-theme">Integrate Theme</a></li>
+<li><a href="#deployment">Deployment to Github page</a></li>
 </ul>
 
-<p>When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrove, the headline of Alphabet Village and the subline of her own road, the Line Lane. Pityful a rethoric question ran over her cheek, then</p>
+<h4 id="introduction-a-name-introduction-a">Introduction <a name="introduction"></a></h4>
+
+<p>Thanks to the article <a href="https://medium.freecodecamp.org/every-developer-should-have-a-blog-heres-why-and-how-to-stick-with-it-5fd55a247fbf">Every developer should have a blog. Here’s why, and how to stick with it</a> that motivated me a lot to create a blog in order to share my knowledge to community.</p>
+
+<p>So from that helpful topic. There are 3 things I have studied.</p>
+
+<ol>
+<li><a href="https://gohugo.io/">Hugo</a></li>
+<li><a href="https://help.github.com/articles/what-is-github-pages/">Github page</a></li>
+<li><a href="https://github.com/adam-p/markdown-here">Markdown</a></li>
+</ol>
+
+<p>From this knowlegde I built my own site quickly and focused more on the content that I wanna share.</p>
+
+<h4 id="set-up-project-a-name-setup-project-a">Set Up Project <a name="setup-project"></a></h4>
+
+<p>My assumption is you guys already have experience with <a href="https://git-scm.com/docs/git">Git</a> in command line, <a href="https://github.com/">Github</a> which is a repository for your code and your labtop is <strong>MacOS Sierra</strong>.</p>
+
+<p>We will have 3 steps to set up a project.</p>
+
+<p>Step 1: Create Repo on <strong>Github</strong></p>
+
+<p>Repository is just a simple place to store your code. You have to create Github account first to create repository.</p>
+
+<p><img src="/my-blog/img/portfolio/content1/step1.jpg" alt="Create new Repository" /></p>
+
+<p>Step 2: Install <strong>Hugo</strong></p>
+
+<pre><code>brew install hugo
+</code></pre>
+
+<p>then cd to your Project folder and type</p>
+
+<pre><code>hugo new site you-site-name
+cd you-site-name
+git init
+git remote add origin https://github.com/user-name/repo-name.git
+</code></pre>
+
+<p>Here we do 4 minor steps:</p>
+
+<ol>
+<li>Create project name you-site-name</li>
+<li>Move to your project name</li>
+<li>Initial git repo on local</li>
+<li>Point your local git to Git repo online</li>
+</ol>
+
+<p>NOTE: a good question for newbie is where should I get this link <a href="https://github.com/user-name/repo-name.git">https://github.com/user-name/repo-name.git</a> ?</p>
+
+<p><img src="/my-blog/img/portfolio/content1/step2.jpg" alt="public link to my repositoty" /></p>
+
+<p>Read this <a href="https://gohugo.io/getting-started/directory-structure/">Project Structure</a> to learn the Hugo prjoject structure.</p>
+
+<p>Step 3 : Push your code to <strong>Github Repository</strong></p>
+
+<pre><code>git status
+git commit -m &quot;your-first-message&quot;
+git push origin master
+</code></pre>
+
+<p><img src="/my-blog/img/portfolio/content1/step3.jpg" alt="How your code look like on Github" /></p>
+
+<h4 id="integrate-theme-a-name-integrate-theme-a">Integrate Theme <a name="integrate-theme"></a></h4>
+
+<p>In this section. I gonna introduce you guys a simple way to have a perfect theme(UI - user interface) for your site.</p>
+
+<p><a href="https://themes.gohugo.io/">Hugo themes website</a> a good place to start with.</p>
+
+<p>we pick the theme from site above click on <strong>Download</strong> button to go to theme source.</p>
+
+<p><img src="/my-blog/img/portfolio/content1/theme_site.jpg" alt="porfolio theme" /></p>
+
+<p><img src="/my-blog/img/portfolio/content1/theme_source.jpg" alt="porfolio theme on Github" /></p>
+
+<p>There are two ways to get the source code. But, I perfer use download as ZIP file and put it in theme folder.</p>
+
+<p><img src="/my-blog/img/portfolio/content1/place_to_store_theme.jpg" alt="store theme to theme folder" /></p>
+
+<p>Then we must to add <code>publishDir = &quot;docs&quot;</code> to config.toml file since this is a way to help Github host regconize your site and public it globally.</p>
+
+<p><img src="/my-blog/img/portfolio/content1/must_do_config.jpg" alt="must do config" /></p>
+
+<h4 id="deployment-to-github-page-a-name-deployment-a">Deployment to Github page <a name="deployment"></a></h4>
+
+<p>This is the most imporant section that we wanna learn about. All stuff we made above is to push your site on internet.</p>
+
+<p>There are so many way to push your site on internet. But, to me as a developer i perfer Github as a simple way to do. It support hosting already,</p>
+
+<p>First I create a <strong>deploy.sh</strong> (I copied it from this <a href="https://gohugo.io/hosting-and-deployment/hosting-on-github/">site</a>) file that run on terminal</p>
+
+<pre><code>#!/bin/bash
+
+echo -e &quot;\033[0;32mDeploying updates to GitHub...\033[0m&quot;
+
+# Build the project.
+hugo -t hugo-creative-portfolio-theme-master  # if using a theme, replace with `hugo -t &lt;YOURTHEME&gt;`
+
+# Go To Public folder
+cd public
+# Add changes to git.
+git add .
+
+# Commit changes.
+msg=&quot;rebuilding site `date`&quot;
+if [ $# -eq 1 ]
+  then msg=&quot;$1&quot;
+fi
+git commit -m &quot;$msg&quot;
+
+# Push source and build repos.
+git push origin master
+
+# Come Back up to the Project Root
+cd ..
+</code></pre>
+
+<p>then I open Terminal and type <code>./deploy.sh</code> this will auto create docs folder and push your code to Github source.</p>
+
+<p>Secondly, On your Github repo. Go to <strong>Setting</strong> and scroll down to the bottom you will see <strong>Github pages</strong> section. Choose <strong>master branch/docs folder</strong> option.</p>
+
+<p><img src="/my-blog/img/portfolio/content1/project_setting.jpg" alt="project setting on github" /></p>
+
+<p>DONE! click on Your site is published at <a href="Your site is published at https://hoangtranson.github.io/my-blog/">https://hoangtranson.github.io/my-blog/</a> to go to your website and enjoy cup of coffee.</p>
          
       </div>
     </div>
