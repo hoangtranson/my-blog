@@ -26,4 +26,4 @@ PingPong champion 2018 double category at Pyco group
 
 But the awesome knowledge I ever learnt is from my Colleagues, Friends, and my Boss.
 
-[1]: /img/my_photo_1.jpg
+[1]: /my-blog/img/my_photo_1.jpg
