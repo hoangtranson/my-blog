@@ -6,10 +6,20 @@
     <description>Recent content on Soobin Hoang Tran Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 29 Apr 2018 20:00:00 +0700</lastBuildDate>
+    <lastBuildDate>Mon, 30 Apr 2018 17:00:00 +0700</lastBuildDate>
     
 	<atom:link href="https://hoangtranson.github.io/my-blog/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Integrate custom font svg to font-awesome</title>
+      <link>https://hoangtranson.github.io/my-blog/portfolio/work3/</link>
+      <pubDate>Mon, 30 Apr 2018 17:00:00 +0700</pubDate>
+      
+      <guid>https://hoangtranson.github.io/my-blog/portfolio/work3/</guid>
+      <description>&lt;p&gt;I have huge trouble with these stuff in my projects before.
+&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>How to have comment on your content</title>

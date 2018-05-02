@@ -2,7 +2,7 @@
 <html lang="en-us">
 <head><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>Name of the work 3</title>
+<title>Integrate custom font svg to font-awesome</title>
 <meta name="description" content="Frontend blog">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="all,follow">
@@ -29,6 +29,13 @@
 <link href="https://hoangtranson.github.io/my-blog/css/custom.css" rel="stylesheet">
 <link rel="shortcut icon" href="https://hoangtranson.github.io/my-blog/img/favicon.png">
 
+
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-118292467-1', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='//www.google-analytics.com/analytics.js'></script>
 
 </head>
 <body>
@@ -109,36 +116,108 @@
   <div class="row">
     <div class="col-lg-8">
       <div class="content-column-content">
-         <h1>Name of the work 3</h1>
-         <p>Fifth abundantly made Give sixth hath. Cattle creature i be don&rsquo;t them.
+         <h1>Integrate custom font svg to font-awesome</h1>
+         <p>I have huge trouble with these stuff in my projects before.
 </p>
 
-<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
-
-<p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
-
-<ol>
-<li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</li>
-<li>Aliquam tincidunt mauris eu risus.</li>
-</ol>
-
-<blockquote>
-<p>The Big Oxmox advised her not to do so, because there were thousands of bad Commas, wild Question Marks and devious Semikoli, but the Little Blind Text didn&rsquo;t listen. She packed her seven versalia, put her initial into the belt and made herself on the way.</p>
-</blockquote>
-
-<h2 id="header-level-2">Header Level 2</h2>
-
-<p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar.</p>
-
-<p>The Big Oxmox advised her not to do so, because there were thousands of bad Commas, wild Question Marks and devious Semikoli, but the Little Blind Text didn&rsquo;t listen. She packed her seven versalia, put her initial into the belt and made herself on the way.</p>
+<h3 id="my-table-of-content">My Table of content</h3>
 
 <ul>
-<li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</li>
-<li>Aliquam tincidunt mauris eu risus.</li>
+<li><a href="#problem">Problem</a></li>
+<li><a href="#solution">Solution</a></li>
 </ul>
 
-<p>When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrove, the headline of Alphabet Village and the subline of her own road, the Line Lane. Pityful a rethoric question ran over her cheek, then</p>
-         
+<h4 id="problem-a-name-problem-a">Problem <a name="problem"></a></h4>
+
+<p>Almost my ex-projects used <a href="https://zeplin.io/">Zeplin</a> to keep track designs for both QC and Developer team during project time.</p>
+
+<p>The best feature of Zeplin has to be the Guideline page with all the colors, icons and fonts. So, it support developers reducing a lot of effort in implementation. The problem here is that we never have 1 front-end developer in project from start first RC to final RC right?</p>
+
+<p>Maybe ex-front-end developer used svg tag to generate icon or some tools like <a href="https://glyphter.com/">Glyphter</a> to create custom font package and put it into project. But, another Front-end developer will use another technique like <a href="https://icomoon.io/">Ico moon</a>.</p>
+
+<p>As a result, time to time we will get different font sources in our poject and it is hard to maintain. Just back to my ex-project named <a href="http://mbc.net/">MBC</a> which is very large social network for Arab. I created custom font from Zeplin by using Glyphter and after 4 months I moved to another project and this made font source maintainent hard for another frontend guy since Glyphter didn&rsquo;t have config file for old font which using to add new font to.</p>
+
+<p>It motivates me a lot to find out another way to unique way we create font icon from Zeplin and that situation will never happen again in the future. One famous quote I love is</p>
+
+<blockquote>
+<p>always code as if the guy who ends up maintaining your code will be a violent psychopath who knows where you live from <strong>Martin Golding</strong>.</p>
+</blockquote>
+
+<p>as the only way to improve ourself is learn from mistake right?</p>
+
+<p>Nowadays, We have numerous ways to add icons to a website, and I think the most popular way is to use <a href="https://fontawesome.com/icons?d=gallery">Font Awesome</a>.</p>
+
+<p>I found a way to integrate font icon (SVG file) from Zeplin to Font Awesome library in pmy project is to use a tool called <a href="https://www.calligraphr.com/en/">Calligraphr</a>. It allows us to create some code like this</p>
+
+<pre><code>&lt;i class=&quot;fa fa-lol&quot;/&gt;
+</code></pre>
+
+<p>and we just put all our custom font icon into a unique css file. we will never have many font source in out project during a year again.</p>
+
+<h4 id="solution-a-name-solution-a">Solution <a name="solution"></a></h4>
+
+<p>I tried to list out most of step here.</p>
+
+<p>Step 1: we login to Calligraphr site and download template for your font (I prefer img template).</p>
+
+<p><img src="/my-blog/img/portfolio/content3/step1.jpg" alt="step 1" /></p>
+
+<p>Step 2: after we have template. just put image into template by photoshop or another tools. then export as img file.</p>
+
+<p><img src="/my-blog/img/portfolio/content3/step2.jpg" alt="step 2" /></p>
+
+<p>Step 3: upload the image template back to Calligraphr</p>
+
+<p><img src="/my-blog/img/portfolio/content3/step3.jpg" alt="step 3" /></p>
+
+<p>Step 4: at <strong>Build font</strong> tab, just build your font</p>
+
+<p><img src="/my-blog/img/portfolio/content3/step4.jpg" alt="step 4" /></p>
+
+<p>Step 5: click to link and get file otf</p>
+
+<p><img src="/my-blog/img/portfolio/content3/step5.jpg" alt="step 5" /></p>
+
+<p>Step 6: put it to your css file</p>
+
+<pre><code>@font-face {
+    font-family: 'FontMoreAwesome';
+    src: url('fonts/Font_awesome_more-Regular.otf');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.fa-troll:before {
+    font-family: FontMoreAwesome;
+    content: &quot;0&quot;;
+}
+</code></pre>
+
+<p><img src="/my-blog/img/portfolio/content3/step6.jpg" alt="step 6" /></p>
+
+<p>Step 7: Enjoy your day ^^</p>
+
+<p><img src="/my-blog/img/portfolio/content3/step7.jpg" alt="step 7" /></p>
+         <div id="disqus_thread"></div>
+<script>
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "https-hoangtranson-github-io-my-blog" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
       </div>
     </div>
   </div>
