@@ -1,6 +1,6 @@
 +++
 showonlyimage = false
-draft = true
+draft = false
 image = "img/portfolio/content3/font-awesome.jpg"
 date = "2018-04-30T17:00:00+07:00"
 title = "Integrate custom font svg to font-awesome"
@@ -42,3 +42,54 @@ and we just put all our custom font icon into a unique css file. we will never h
 
 #### Solution <a name="solution"></a>
 
+I tried to list out most of step here.
+
+Step 1: we login to Calligraphr site and download template for your font (I prefer img template).
+
+![step 1][1]
+
+Step 2: after we have template. just put image into template by photoshop or another tools. then export as img file.
+
+![step 2][2]
+
+Step 3: upload the image template back to Calligraphr
+
+![step 3][3]
+
+Step 4: at **Build font** tab, just build your font
+
+![step 4][4]
+
+Step 5: click to link and get file otf
+
+![step 5][5]
+
+Step 6: put it to your css file
+
+```
+@font-face {
+    font-family: 'FontMoreAwesome';
+    src: url('fonts/Font_awesome_more-Regular.otf');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.fa-troll:before {
+    font-family: FontMoreAwesome;
+    content: "0";
+}
+```
+
+![step 6][6]
+
+Step 7: Enjoy your day ^^
+
+![step 7][7]
+
+[1]: /my-blog/img/portfolio/content3/step1.jpg
+[2]: /my-blog/img/portfolio/content3/step2.jpg
+[3]: /my-blog/img/portfolio/content3/step3.jpg
+[4]: /my-blog/img/portfolio/content3/step4.jpg
+[5]: /my-blog/img/portfolio/content3/step5.jpg
+[6]: /my-blog/img/portfolio/content3/step6.jpg
+[7]: /my-blog/img/portfolio/content3/step7.jpg
