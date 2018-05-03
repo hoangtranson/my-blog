@@ -2,7 +2,7 @@
 <html lang="en-us">
 <head><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>Item without image</title>
+<title>How to merge old commits to only one commit</title>
 <meta name="description" content="Frontend blog">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="all,follow">
@@ -30,6 +30,13 @@
 <link rel="shortcut icon" href="https://hoangtranson.github.io/my-blog/img/favicon.png">
 
 
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-118292467-1', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='//www.google-analytics.com/analytics.js'></script>
+
 </head>
 <body>
   <div id="all">
@@ -37,7 +44,7 @@
           <div class="row row-offcanvas row-offcanvas-left">
               <div id="sidebar" class="col-xs-6 col-sm-4 col-md-3 sidebar-offcanvas">
   <div class="sidebar-content">
-    <h1 class="sidebar-heading"><a href="https://hoangtranson.github.io/my-blog/">Soobin Hoang Tran Blog</a></h1>
+    <h1 class="sidebar-heading"><a href="https://hoangtranson.github.io/my-blog/">Hoang Tran Blog</a></h1>
     
       <p class="sidebar-p">I am a frontend developer with more than 3 years of experience.</p>
     
@@ -88,7 +95,7 @@
     <div class="copyright">
       <p class="credit">
         
-          &copy;2018 Soobin Hoang Tran
+          &copy;2018 Hoang Tran
         
         | Template by <a href="https://bootstrapious.com/free-templates" class="external">Bootstrapious.com</a>
 
@@ -103,42 +110,66 @@
 <div class="col-xs-12 col-sm-8 col-md-9 content-column white-background">
   <div class="small-navbar visible-xs">
   <button type="button" data-toggle="offcanvas" class="btn btn-ghost pull-left"> <i class="fa fa-align-left"> </i>Menu</button>
-  <h1 class="small-navbar-heading"><a href="https://hoangtranson.github.io/my-blog/">Soobin Hoang Tran Blog</a></h1>
+  <h1 class="small-navbar-heading"><a href="https://hoangtranson.github.io/my-blog/">Hoang Tran Blog</a></h1>
 </div>
 
   <div class="row">
     <div class="col-lg-8">
       <div class="content-column-content">
-         <h1>Item without image</h1>
-         <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.
+         <h1>How to merge old commits to only one commit</h1>
+         <p>I face this problem a lot in my projects and here is the way that I resolve it.
 </p>
 
-<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
-
-<p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
-
-<ol>
-<li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</li>
-<li>Aliquam tincidunt mauris eu risus.</li>
-</ol>
-
-<blockquote>
-<p>The Big Oxmox advised her not to do so, because there were thousands of bad Commas, wild Question Marks and devious Semikoli, but the Little Blind Text didn&rsquo;t listen. She packed her seven versalia, put her initial into the belt and made herself on the way.</p>
-</blockquote>
-
-<h2 id="header-level-2">Header Level 2</h2>
-
-<p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar.</p>
-
-<p>The Big Oxmox advised her not to do so, because there were thousands of bad Commas, wild Question Marks and devious Semikoli, but the Little Blind Text didn&rsquo;t listen. She packed her seven versalia, put her initial into the belt and made herself on the way.</p>
+<h3 id="table-of-content">Table of content</h3>
 
 <ul>
-<li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</li>
-<li>Aliquam tincidunt mauris eu risus.</li>
+<li><a href="#problem">Problem</a></li>
+<li><a href="#solution">Solution</a></li>
 </ul>
 
-<p>When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrove, the headline of Alphabet Village and the subline of her own road, the Line Lane. Pityful a rethoric question ran over her cheek, then</p>
-         
+<h4 id="problem-a-name-problem-a">Problem <a name="problem"></a></h4>
+
+<p>During my projects every feature I did, I created their own branch to do that feature and <strong>git commit</strong> a lot during implementation.</p>
+
+<p><img src="/my-blog/img/portfolio/content4/img1.jpg" alt="a lot of commit" /></p>
+
+<p>As you can see from photo above. I have there commits and two of them were dummy commit. So As a developer when I finished my ticket, I wanna merge all commits into only one.</p>
+
+<p>This help a lot of in building note change in Jenkin every time I deploy new code to testing environment and also I got a meaning text in commit on Github.</p>
+
+<h4 id="solution-a-name-solution-a">Solution <a name="solution"></a></h4>
+
+<p>So I came to quite simple solution by command line</p>
+
+<p>I reset to first commit on my branch</p>
+
+<p><img src="/my-blog/img/portfolio/content4/img2.jpeg" alt="reset to first commit" /></p>
+
+<p>Then I re-commit it again.</p>
+
+<p><img src="/my-blog/img/portfolio/content4/img3.jpeg" alt="general steps" /></p>
+
+<p>Quite simple huh?</p>
+         <div id="disqus_thread"></div>
+<script>
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "https-hoangtranson-github-io-my-blog" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
       </div>
     </div>
   </div>

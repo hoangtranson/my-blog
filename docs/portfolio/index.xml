@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Portfolios on Soobin Hoang Tran Blog</title>
+    <title>Portfolios on Hoang Tran Blog</title>
     <link>https://hoangtranson.github.io/my-blog/portfolio/</link>
-    <description>Recent content in Portfolios on Soobin Hoang Tran Blog</description>
+    <description>Recent content in Portfolios on Hoang Tran Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 30 Apr 2018 17:00:00 +0700</lastBuildDate>
@@ -18,6 +18,16 @@
       
       <guid>https://hoangtranson.github.io/my-blog/portfolio/work3/</guid>
       <description>&lt;p&gt;I have huge trouble with these stuff in my projects before.
+&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>How to merge old commits to only one commit</title>
+      <link>https://hoangtranson.github.io/my-blog/portfolio/work4/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hoangtranson.github.io/my-blog/portfolio/work4/</guid>
+      <description>&lt;p&gt;I face this problem a lot in my projects and here is the way that I resolve it.
 &lt;/p&gt;</description>
     </item>
     
