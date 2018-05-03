@@ -10,7 +10,7 @@ weight = 1
 I have huge trouble with these stuff in my projects before.
 <!--more-->
 
-### My Table of content
+### Table of content
 - [Problem](#problem)
 - [Solution](#solution)
 
