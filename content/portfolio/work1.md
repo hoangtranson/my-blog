@@ -12,7 +12,7 @@ I ve just configured out recently how to create a site and deploy it to github h
 
 ![My blog][1]
 
-### My Table of content
+### Table of content
 
 - [Introduction](#introduction)
 - [Set Up Project](#setup-project)

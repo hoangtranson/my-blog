@@ -14,7 +14,7 @@ After googling some keyword and read some API document on [GoHugo](https://gohug
 
 ![comment section demostration][1]
 
-### My Table of content
+### Table of content
 
 - [Introduction](#introduction)
 - [Set Up Disqus](#setup-project)
