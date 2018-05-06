@@ -15,7 +15,6 @@ Software engineering principles, from Robert C. Martin's book Clean Code.
 - [Summary and Integrate to PR](#summary)
 - [Variables](#variables)
 - [Functions](#functions)
-- [Objects and Data Structures](#objectandDSA)
 - [Classes](#classes)
 - [SOLID](#solid)
 - [Testing](#testing)
@@ -53,12 +52,7 @@ Functions
 - [ ] Avoid negative conditionals
 - [ ] Avoid conditionals
 - [ ] Avoid type-checking
-- [ ] Don't over-optimize
 - [ ] Remove dead code
-
-Objects and Data Structures
-- [ ] Use getters and setters
-- [ ] Make objects have private members
 
 Classes
 - [ ] Prefer ES2015/ES6 classes over ES5 plain functions
@@ -77,7 +71,6 @@ Testing
 
 Concurrency
 - [ ] Use Promises, not callbacks
-- [ ] Async/Await are even cleaner than Promises
 
 Error Handling
 - [ ] Don't ignore caught errors
@@ -99,6 +92,11 @@ Comments
 ![image 2][2]
 
 So I use this as check list whenever I create pull request to important branchs.
+
+References:
+
+1. https://blog.github.com/2016-02-17-issue-and-pull-request-templates/
+2. https://help.github.com/articles/creating-a-pull-request-template-for-your-repository/
 
 #### Variables <a name="variables"></a>
 
@@ -614,50 +612,988 @@ So I use this as check list whenever I create pull request to important branchs.
     inventoryTracker('apples', req, 'www.inventory-awesome.io');
     ```
 
-#### Objects and Data Structures <a name="objectandDSA"></a>
-
-1. Use getters and setters
-2. Make objects have private members
-
 #### Classes <a name="classes"></a>
 
 1. Prefer ES2015/ES6 classes over ES5 plain functions
+
+    It's very difficult to get readable class inheritance, construction, and method definitions for classical ES5 classes. If you need inheritance (and be aware that you might not), then prefer ES2015/ES6 classes. However, prefer small functions over classes until you find yourself needing larger and more complex objects.
+
+    BAD CODE:
+    ```Javascript
+    const Animal = function(age) {
+        if (!(this instanceof Animal)) {
+            throw new Error('Instantiate Animal with `new`');
+        }
+
+        this.age = age;
+    };
+
+    Animal.prototype.move = function move() {};
+
+    const Mammal = function(age, furColor) {
+        if (!(this instanceof Mammal)) {
+            throw new Error('Instantiate Mammal with `new`');
+        }
+
+        Animal.call(this, age);
+        this.furColor = furColor;
+    };
+
+    Mammal.prototype = Object.create(Animal.prototype);
+    Mammal.prototype.constructor = Mammal;
+    Mammal.prototype.liveBirth = function liveBirth() {};
+
+    const Human = function(age, furColor, languageSpoken) {
+    if (!(this instanceof Human)) {
+        throw new Error('Instantiate Human with `new`');
+    }
+
+    Mammal.call(this, age, furColor);
+        this.languageSpoken = languageSpoken;
+    };
+
+    Human.prototype = Object.create(Mammal.prototype);
+    Human.prototype.constructor = Human;
+    Human.prototype.speak = function speak() {};
+    ```
+
+    GOOD CODE:
+    ```Javascript
+    class Animal {
+        constructor(age) {
+            this.age = age;
+        }
+
+        move() { /* ... */ }
+    }
+
+    class Mammal extends Animal {
+        constructor(age, furColor) {
+            super(age);
+            this.furColor = furColor;
+        }
+
+        liveBirth() { /* ... */ }
+    }
+
+    class Human extends Mammal {
+        constructor(age, furColor, languageSpoken) {
+            super(age, furColor);
+            this.languageSpoken = languageSpoken;
+        }
+
+        speak() { /* ... */ }
+    }
+    ```
 2. Use method chaining
+
+    This pattern is very useful in JavaScript and you see it in many libraries such as jQuery and Lodash. It allows your code to be expressive, and less verbose. For that reason, I say, use method chaining and take a look at how clean your code will be. In your class functions, simply return this at the end of every function, and you can chain further class methods onto it.
+
+    BAD CODE:
+    ```Javascript
+    class Car {
+        constructor(make, model, color) {
+            this.make = make;
+            this.model = model;
+            this.color = color;
+        }
+
+        setMake(make) {
+            this.make = make;
+        }
+
+        setModel(model) {
+            this.model = model;
+        }
+
+        setColor(color) {
+            this.color = color;
+        }
+
+        save() {
+            console.log(this.make, this.model, this.color);
+        }
+    }
+
+    const car = new Car('Ford','F-150','red');
+    car.setColor('pink');
+    car.save();
+    ```
+
+    GOOD CODE:
+    ```Javascript
+    class Car {
+        constructor(make, model, color) {
+            this.make = make;
+            this.model = model;
+            this.color = color;
+        }
+
+        setMake(make) {
+            this.make = make;
+            // NOTE: Returning this for chaining
+            return this;
+        }
+
+        setModel(model) {
+            this.model = model;
+            // NOTE: Returning this for chaining
+            return this;
+        }
+
+        setColor(color) {
+            this.color = color;
+            // NOTE: Returning this for chaining
+            return this;
+        }
+
+        save() {
+            console.log(this.make, this.model, this.color);
+            // NOTE: Returning this for chaining
+            return this;
+        }
+    }
+
+    const car = new Car('Ford','F-150','red')
+    .setColor('pink')
+    .save();
+    ```
 3. Prefer composition over inheritance
+
+    As stated famously in Design Patterns by the Gang of Four, you should prefer composition over inheritance where you can. There are lots of good reasons to use inheritance and lots of good reasons to use composition. The main point for this maxim is that if your mind instinctively goes for inheritance, try to think if composition could model your problem better. In some cases it can.
+
+    You might be wondering then, "when should I use inheritance?" It depends on your problem at hand, but this is a decent list of when inheritance makes more sense than composition:
+
+    - Your inheritance represents an "is-a" relationship and not a "has-a" relationship (Human->Animal vs. User->UserDetails).
+    - You can reuse code from the base classes (Humans can move like all animals).
+    - You want to make global changes to derived classes by changing a base class. (Change the caloric expenditure of all animals when they move).
+
+    BAD CODE:
+    ```Javascript
+    class Employee {
+        constructor(name, email) {
+            this.name = name;
+            this.email = email;
+        }
+    }
+
+    // Bad because Employees "have" tax data. EmployeeTaxData is not a type of Employee
+
+    class EmployeeTaxData extends Employee {
+        constructor(ssn, salary) {
+            super();
+            this.ssn = ssn;
+            this.salary = salary;
+        }
+    }
+    ```
+
+    GOOD CODE:
+    ```Javascript
+    class EmployeeTaxData {
+        constructor(ssn, salary) {
+            this.ssn = ssn;
+            this.salary = salary;
+        }
+    }
+
+    class Employee {
+        constructor(name, email) {
+            this.name = name;
+            this.email = email;
+        }
+
+        setTaxData(ssn, salary) {
+            this.taxData = new EmployeeTaxData(ssn, salary);
+        }
+    }
+    ```
 
 #### SOLID <a name="solid"></a>
 
 1. Single Responsibility Principle (SRP)
+    As stated in Clean Code, "There should never be more than one reason for a class to change". It's tempting to jam-pack a class with a lot of functionality, like when you can only take one suitcase on your flight. The issue with this is that your class won't be conceptually cohesive and it will give it many reasons to change. Minimizing the amount of times you need to change a class is important. It's important because if too much functionality is in one class and you modify a piece of it, it can be difficult to understand how that will affect other dependent modules in your codebase.
+
+    BAD CODE:
+    ```Javascript
+    class UserSettings {
+        constructor(user) {
+            this.user = user;
+        }
+
+        changeSettings(settings) {
+            if (this.verifyCredentials()) {}
+        }
+
+        verifyCredentials() {}
+    }
+    ```
+
+    GOOD CODE:
+    ```Javascript
+    class UserAuth {
+        constructor(user) {
+            this.user = user;
+        }
+
+        verifyCredentials() {}
+    }
+
+    class UserSettings {
+        constructor(user) {
+            this.user = user;
+            this.auth = new UserAuth(user);
+        }
+
+        changeSettings(settings) {
+            if (this.auth.verifyCredentials()) {}
+        }
+    }
+    ```
+
 2. Open/Closed Principle (OCP)
+
+    As stated by Bertrand Meyer, "software entities (classes, modules, functions, etc.) should be open for extension, but closed for modification." What does that mean though? This principle basically states that you should allow users to add new functionalities without changing existing code.
+
+    BAD CODE:
+    ```Javascript
+    class AjaxAdapter extends Adapter {
+        constructor() {
+            super();
+            this.name = 'ajaxAdapter';
+        }
+    }
+
+    class NodeAdapter extends Adapter {
+        constructor() {
+            super();
+            this.name = 'nodeAdapter';
+        }
+    }
+
+    class HttpRequester {
+        constructor(adapter) {
+            this.adapter = adapter;
+        }
+
+        fetch(url) {
+            if (this.adapter.name === 'ajaxAdapter') {
+                return makeAjaxCall(url).then((response) => {
+
+                    // transform response and return
+
+                });
+            } else if (this.adapter.name === 'httpNodeAdapter') {
+                return makeHttpCall(url).then((response) => {
+
+                    // transform response and return
+
+                });
+            }
+        }
+    }
+
+    function makeAjaxCall(url) {
+
+        // request and return promise
+
+    }
+
+    function makeHttpCall(url) {
+
+        // request and return promise
+
+    }
+    ```
+
+    GOOD CODE:
+    ```Javascript
+    class AjaxAdapter extends Adapter {
+        constructor() {
+            super();
+            this.name = 'ajaxAdapter';
+        }
+
+        request(url) {
+
+            // request and return promise
+
+        }
+    }
+
+    class NodeAdapter extends Adapter {
+        constructor() {
+            super();
+            this.name = 'nodeAdapter';
+        }
+
+        request(url) {
+
+            // request and return promise
+
+        }
+    }
+
+    class HttpRequester {
+        constructor(adapter) {
+            this.adapter = adapter;
+        }
+
+        fetch(url) {
+            return this.adapter.request(url).then((response) => {
+
+                // transform response and return
+
+            });
+        }
+    }
+    ```
 3. Liskov Substitution Principle (LSP)
+
+    This is a scary term for a very simple concept. It's formally defined as "If S is a subtype of T, then objects of type T may be replaced with objects of type S (i.e., objects of type S may substitute objects of type T) without altering any of the desirable properties of that program (correctness, task performed, etc.)." That's an even scarier definition.
+
+    The best explanation for this is if you have a parent class and a child class, then the base class and child class can be used interchangeably without getting incorrect results. This might still be confusing, so let's take a look at the classic Square-Rectangle example. Mathematically, a square is a rectangle, but if you model it using the "is-a" relationship via inheritance, you quickly get into trouble.
+
+    BAD CODE:
+    ```Javascript
+    class Rectangle {
+        constructor() {
+            this.width = 0;
+            this.height = 0;
+        }
+
+        setColor(color) {
+        }
+
+        render(area) {
+        }
+
+        setWidth(width) {
+            this.width = width;
+        }
+
+        setHeight(height) {
+            this.height = height;
+        }
+
+        getArea() {
+            return this.width * this.height;
+        }
+    }
+
+    class Square extends Rectangle {
+        setWidth(width) {
+            this.width = width;
+            this.height = width;
+        }
+
+        setHeight(height) {
+            this.width = height;
+            this.height = height;
+        }
+    }
+
+    renderLargeRectangles(rectangles) {
+        rectangles.forEach((rectangle) => {
+            rectangle.setWidth(4);
+            rectangle.setHeight(5);
+            const area = rectangle.getArea(); // BAD: Returns 25 for Square. Should be 20.
+
+            rectangle.render(area);
+
+        });
+    }
+
+    const rectangles = [new Rectangle(), new Rectangle(), new Square()];
+    renderLargeRectangles(rectangles);
+    ```
+
+    GOOD CODE:
+    ```Javascript
+    class Shape {
+        setColor(color) {
+        }
+
+        render(area) {
+        }
+    }
+
+    class Rectangle extends Shape {
+        constructor(width, height) {
+            super();
+            this.width = width;
+            this.height = height;
+        }
+
+        getArea() {
+            return this.width * this.height;
+        }
+    }
+
+    class Square extends Shape {
+        constructor(length) {
+            super();
+            this.length = length;
+        }
+
+        getArea() {
+            return this.length * this.length;
+        }
+    }
+
+    renderLargeShapes(shapes) {
+        shapes.forEach((shape) => {
+            const area = shape.getArea();
+            shape.render(area);
+        });
+    }
+
+    const shapes = [new Rectangle(4, 5), new Rectangle(4, 5), new Square(5)];
+    renderLargeShapes(shapes);
+    ```
 4. Interface Segregation Principle (ISP)
+
+    JavaScript doesn't have interfaces so this principle doesn't apply as strictly as others. However, it's important and relevant even with JavaScript's lack of type system.
+
+    ISP states that "Clients should not be forced to depend upon interfaces that they do not use." Interfaces are implicit contracts in JavaScript because of duck typing.
+
+    A good example to look at that demonstrates this principle in JavaScript is for classes that require large settings objects. Not requiring clients to setup huge amounts of options is beneficial, because most of the time they won't need all of the settings. Making them optional helps prevent having a "fat interface".
+
+    BAD CODE:
+    ```Javascript
+    class DOMTraverser {
+        constructor(settings) {
+            this.settings = settings;
+            this.setup();
+        }
+
+        setup() {
+            this.rootNode = this.settings.rootNode;
+            this.animationModule.setup();
+        }
+
+        traverse() {
+        }
+    }
+
+    const $ = new DOMTraverser({
+        rootNode: document.getElementsByTagName('body'),
+        animationModule() {} // Most of the time, we won't need to animate when traversing.
+
+    });
+    ```
+
+    GOOD CODE:
+    ```Javascript
+    class DOMTraverser {
+        constructor(settings) {
+            this.settings = settings;
+            this.options = settings.options;
+            this.setup();
+        }
+
+        setup() {
+            this.rootNode = this.settings.rootNode;
+            this.setupOptions();
+        }
+
+        setupOptions() {
+            if (this.options.animationModule) {
+            }
+        }
+
+        traverse() {
+        }
+    }
+
+    const $ = new DOMTraverser({
+        rootNode: document.getElementsByTagName('body'),
+        options: {
+            animationModule() {}
+        }
+    });
+    ```
 5. Dependency Inversion Principle (DIP)
+
+    This principle states two essential things:
+    - High-level modules should not depend on low-level modules. Both should depend on abstractions.
+    - Abstractions should not depend upon details. Details should depend on abstractions.
+
+    This can be hard to understand at first, but if you've worked with AngularJS, you've seen an implementation of this principle in the form of Dependency Injection (DI). While they are not identical concepts, DIP keeps high-level modules from knowing the details of its low-level modules and setting them up. It can accomplish this through DI. A huge benefit of this is that it reduces the coupling between modules. Coupling is a very bad development pattern because it makes your code hard to refactor.
+
+    As stated previously, JavaScript doesn't have interfaces so the abstractions that are depended upon are implicit contracts. That is to say, the methods and properties that an object/class exposes to another object/class. In the example below, the implicit contract is that any Request module for an InventoryTracker will have a requestItems method.
+
+    BAD CODE:
+    ```Javascript
+    class InventoryRequester {
+        constructor() {
+            this.REQ_METHODS = ['HTTP'];
+        }
+
+        requestItem(item) {}
+    }
+
+    class InventoryTracker {
+        constructor(items) {
+            this.items = items;
+
+            // BAD: We have created a dependency on a specific request implementation.
+            // We should just have requestItems depend on a request method: `request`
+
+            this.requester = new InventoryRequester();
+        }
+
+        requestItems() {
+            this.items.forEach((item) => {
+            this.requester.requestItem(item);
+            });
+        }
+    }
+
+    const inventoryTracker = new InventoryTracker(['apples', 'bananas']);
+    inventoryTracker.requestItems();
+    ```
+
+    GOOD CODE:
+    ```Javascript
+    class InventoryTracker {
+        constructor(items, requester) {
+            this.items = items;
+            this.requester = requester;
+        }
+
+        requestItems() {
+            this.items.forEach((item) => {
+            this.requester.requestItem(item);
+            });
+        }
+    }
+
+    class InventoryRequesterV1 {
+        constructor() {
+            this.REQ_METHODS = ['HTTP'];
+        }
+
+        requestItem(item) {}
+    }
+
+    class InventoryRequesterV2 {
+        constructor() {
+            this.REQ_METHODS = ['WS'];
+        }
+
+        requestItem(item) {}
+    }
+
+    // By constructing our dependencies externally and injecting them, we can easily
+    // substitute our request module for a fancy new one that uses WebSockets.
+
+    const inventoryTracker = new InventoryTracker(['apples', 'bananas'], new InventoryRequesterV2());
+    inventoryTracker.requestItems();
+    ```
 
 #### Testing <a name="testing"></a>
 
 1. Single concept per test
 
+    BAD CODE:
+    ```Javascript
+    import assert from 'assert';
+
+    describe('MakeMomentJSGreatAgain', () => {
+        it('handles date boundaries', () => {
+            let date;
+
+            date = new MakeMomentJSGreatAgain('1/1/2015');
+            date.addDays(30);
+            assert.equal('1/31/2015', date);
+
+            date = new MakeMomentJSGreatAgain('2/1/2016');
+            date.addDays(28);
+            assert.equal('02/29/2016', date);
+
+            date = new MakeMomentJSGreatAgain('2/1/2015');
+            date.addDays(28);
+            assert.equal('03/01/2015', date);
+        });
+    });
+    ```
+
+    GOOD CODE:
+    ```Javascript
+    import assert from 'assert';
+
+    describe('MakeMomentJSGreatAgain', () => {
+        it('handles 30-day months', () => {
+            const date = new MakeMomentJSGreatAgain('1/1/2015');
+            date.addDays(30);
+            assert.equal('1/31/2015', date);
+        });
+
+        it('handles leap year', () => {
+            const date = new MakeMomentJSGreatAgain('2/1/2016');
+            date.addDays(28);
+            assert.equal('02/29/2016', date);
+        });
+
+        it('handles non-leap year', () => {
+            const date = new MakeMomentJSGreatAgain('2/1/2015');
+            date.addDays(28);
+            assert.equal('03/01/2015', date);
+        });
+    });
+    ```
+
 #### Concurrency <a name="concurrency"></a>
 
 1. Use Promises, not callbacks
-2. Async/Await are even cleaner than Promises
+
+    Callbacks aren't clean, and they cause excessive amounts of nesting. With ES2015/ES6, Promises are a built-in global type. Use them!
+
+    BAD CODE:
+    ```Javascript
+    import { get } from 'request';
+    import { writeFile } from 'fs';
+
+    get('https://en.wikipedia.org/wiki/Robert_Cecil_Martin', (requestErr, response) => {
+        if (requestErr) {
+            console.error(requestErr);
+        } else {
+            writeFile('article.html', response.body, (writeErr) => {
+            if (writeErr) {
+                console.error(writeErr);
+            } else {
+                console.log('File written');
+            }
+            });
+        }
+    });
+    ```
+
+    GOOD CODE:
+    ```Javascript
+    import { get } from 'request';
+    import { writeFile } from 'fs';
+
+    get('https://en.wikipedia.org/wiki/Robert_Cecil_Martin')
+    .then((response) => {
+        return writeFile('article.html', response);
+    })
+    .then(() => {
+        console.log('File written');
+    })
+    .catch((err) => {
+        console.error(err);
+    });
+    ```
 
 #### Error Handling <a name="errorhandling"></a>
 
 1. Don't ignore caught errors
+
+    Doing nothing with a caught error doesn't give you the ability to ever fix or react to said error. Logging the error to the console (console.log) isn't much better as often times it can get lost in a sea of things printed to the console. If you wrap any bit of code in a try/catch it means you think an error may occur there and therefore you should have a plan, or create a code path, for when it occurs.
+
+    BAD CODE:
+    ```Javascript
+    try {
+        functionThatMightThrow();
+    } catch (error) {
+        console.log(error);
+    }
+    ```
+
+    GOOD CODE:
+    ```Javascript
+    try {
+        functionThatMightThrow();
+    } catch (error) {
+        // One option (more noisy than console.log):
+
+        console.error(error);
+        // Another option:
+
+        notifyUserOfError(error);
+        // Another option:
+
+        reportErrorToService(error);
+        // OR do all three!
+
+    }
+    ```
 2. Don't ignore rejected promises
+
+    For the same reason you shouldn't ignore caught errors from try/catch.
+
+    BAD CODE:
+    ```Javascript
+    getdata()
+    .then((data) => {
+        functionThatMightThrow(data);
+    })
+    .catch((error) => {
+        console.log(error);
+    });
+    ```
+
+    GOOD CODE:
+    ```Javascript
+    getdata()
+    .then((data) => {
+        functionThatMightThrow(data);
+    })
+    .catch((error) => {
+        // One option (more noisy than console.log):
+
+        console.error(error);
+        // Another option:
+
+        notifyUserOfError(error);
+        // Another option:
+
+        reportErrorToService(error);
+        // OR do all three!
+
+    });
+    ```
 
 #### Formatting <a name="formatting"></a>
 
 1. Use consistent capitalization
+
+    JavaScript is untyped, so capitalization tells you a lot about your variables, functions, etc. These rules are subjective, so your team can choose whatever they want. The point is, no matter what you all choose, just be consistent.
+
+    BAD CODE:
+    ```Javascript
+    const DAYS_IN_WEEK = 7;
+    const daysInMonth = 30;
+
+    const songs = ['Back In Black', 'Stairway to Heaven', 'Hey Jude'];
+    const Artists = ['ACDC', 'Led Zeppelin', 'The Beatles'];
+
+    eraseDatabase() {}
+    restore_database() {}
+
+    class animal {}
+    class Alpaca {}
+    ```
+
+    GOOD CODE:
+    ```Javascript
+    const DAYS_IN_WEEK = 7;
+    const DAYS_IN_MONTH = 30;
+
+    const SONGS = ['Back In Black', 'Stairway to Heaven', 'Hey Jude'];
+    const ARTISTS = ['ACDC', 'Led Zeppelin', 'The Beatles'];
+
+    eraseDatabase() {}
+    restoreDatabase() {}
+
+    class Animal {}
+    class Alpaca {}
+    ```
+
 2. Function callers and callees should be close
+
+    If a function calls another, keep those functions vertically close in the source file. Ideally, keep the caller right above the callee. We tend to read code from top-to-bottom, like a newspaper. Because of this, make your code read that way.
+
+    BAD CODE:
+    ```Javascript
+    class PerformanceReview {
+        constructor(employee) {
+            this.employee = employee;
+        }
+
+        lookupPeers() {
+            return db.lookup(this.employee, 'peers');
+        }
+
+        lookupManager() {
+            return db.lookup(this.employee, 'manager');
+        }
+
+        getPeerReviews() {
+            const peers = this.lookupPeers();
+            // ...
+        }
+
+        perfReview() {
+            this.getPeerReviews();
+            this.getManagerReview();
+            this.getSelfReview();
+        }
+
+        getManagerReview() {
+            const manager = this.lookupManager();
+        }
+
+        getSelfReview() {
+        }
+    }
+
+    const review = new PerformanceReview(employee);
+    review.perfReview();
+    ```
+
+    GOOD CODE:
+    ```Javascript
+    class PerformanceReview {
+        constructor(employee) {
+            this.employee = employee;
+        }
+
+        perfReview() {
+            this.getPeerReviews();
+            this.getManagerReview();
+            this.getSelfReview();
+        }
+
+        getPeerReviews() {
+            const peers = this.lookupPeers();
+            // ...
+        }
+
+        lookupPeers() {
+            return db.lookup(this.employee, 'peers');
+        }
+
+        getManagerReview() {
+            const manager = this.lookupManager();
+        }
+
+        lookupManager() {
+            return db.lookup(this.employee, 'manager');
+        }
+
+        getSelfReview() {
+        }
+    }
+
+    const review = new PerformanceReview(employee);
+    review.perfReview();
+    ```
 
 #### Comments <a name="comments"></a>
 
 1. Only comment things that have business logic complexity.
+
+    Comments are an apology, not a requirement. Good code mostly documents itself.
+
+    BAD CODE:
+    ```Javascript
+    hashIt(data) {
+        // The hash
+
+        let hash = 0;
+
+        // Length of string
+
+        const length = data.length;
+
+        // Loop through every character in data
+
+        for (let i = 0; i < length; i++) {
+            // Get character code.
+
+            const char = data.charCodeAt(i);
+            // Make the hash
+
+            hash = ((hash << 5) - hash) + char;
+            // Convert to 32-bit integer
+
+            hash &= hash;
+        }
+    }
+    ```
+
+    GOOD CODE:
+    ```Javascript
+    hashIt(data) {
+        let hash = 0;
+        const length = data.length;
+
+        for (let i = 0; i < length; i++) {
+            const char = data.charCodeAt(i);
+            hash = ((hash << 5) - hash) + char;
+            // Convert to 32-bit integer
+
+            hash &= hash;
+        }
+    }
+    ```
 2. Don't leave commented out code in your codebase
+
+    Version control exists for a reason. Leave old code in your history.
+
+    BAD CODE:
+    ```Javascript
+    doStuff();
+    // doOtherStuff();
+    // doSomeMoreStuff();
+    // doSoMuchStuff();
+    ```
+
+    GOOD CODE:
+    ```Javascript
+    doStuff();
+    ```
 3. Don't have journal comments
+
+    Remember, use version control! There's no need for dead code, commented code, and especially journal comments. Use git log to get history!
+
+    BAD CODE:
+    ```Javascript
+
+        /**
+        * 2016-12-20: Removed monads, didn't understand them (RM)
+        * 2016-10-01: Improved using special monads (JP)
+        * 2016-02-03: Removed type-checking (LI)
+        * 2015-03-14: Added combine with type-checking (JR)
+        */
+        combine(a, b) {
+            return a + b;
+        }
+    ```
+
+    GOOD CODE:
+    ```Javascript
+    combine(a, b) {
+        return a + b;
+    }
+    ```
+
 4. Avoid positional markers
+
+    They usually just add noise. Let the functions and variable names along with the proper indentation and formatting give the visual structure to your code.
+
+    BAD CODE:
+    ```Javascript
+    ////////////////////////////////////////////////////////////////////////////////
+    // Scope Model Instantiation
+    ////////////////////////////////////////////////////////////////////////////////
+
+    $scope.model = {
+        menu: 'foo',
+        nav: 'bar'
+    };
+
+    ////////////////////////////////////////////////////////////////////////////////
+    // Action setup
+    ////////////////////////////////////////////////////////////////////////////////
+
+    const actions = function() {
+    };
+    ```
+
+    GOOD CODE:
+    ```Javascript
+    $scope.model = {
+        menu: 'foo',
+        nav: 'bar'
+    };
+
+    const actions = function() {
+    };
+    ```
 
 [1]: /my-blog/img/portfolio/content5/img1.jpg
 [2]: /my-blog/img/portfolio/content5/img2.jpg
