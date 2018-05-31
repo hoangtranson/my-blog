@@ -52,6 +52,16 @@
     </item>
     
     <item>
+      <title>Pure function in Javascript</title>
+      <link>https://hoangtranson.github.io/my-blog/portfolio/work13/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hoangtranson.github.io/my-blog/portfolio/work13/</guid>
+      <description>&lt;p&gt;Pure functions are essential for a variety of purposes such as functional programming, reliable concurrency, and Redux app.
+&lt;/p&gt;</description>
+    </item>
+    
+    <item>
       <title>CSS Specificity</title>
       <link>https://hoangtranson.github.io/my-blog/portfolio/work7/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
