@@ -52,6 +52,16 @@
     </item>
     
     <item>
+      <title>Functional Programming Currying - Part 1</title>
+      <link>https://hoangtranson.github.io/my-blog/portfolio/work14/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hoangtranson.github.io/my-blog/portfolio/work14/</guid>
+      <description>&lt;p&gt;In this section, I gonna talk about &lt;strong&gt;Currying&lt;/strong&gt; in functional programming.
+&lt;/p&gt;</description>
+    </item>
+    
+    <item>
       <title>Pure function in Javascript</title>
       <link>https://hoangtranson.github.io/my-blog/portfolio/work13/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
