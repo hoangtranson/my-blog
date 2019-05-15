@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Functional Programming Currying - Part 1</title>
+<meta name="description" content="Tran Son Hoang Blog">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="all,follow">
+<meta name="googlebot" content="index,follow,snippet,archive">
+<link rel="stylesheet" href="https://hoangtranson.github.io/my-blog/css/bootstrap.min.css">
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:400,300,700,400italic">
+<link rel="stylesheet" href="https://hoangtranson.github.io/my-blog/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://hoangtranson.github.io/my-blog/css/owl.carousel.css">
+<link rel="stylesheet" href="https://hoangtranson.github.io/my-blog/css/owl.theme.css">
+
+
+  <link href="https://hoangtranson.github.io/my-blog/css/style.default.css" rel="stylesheet" id="theme-stylesheet">
+
+ 
+
+  
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  
+
+
+<link href="https://hoangtranson.github.io/my-blog/css/custom.css" rel="stylesheet">
+<link rel="shortcut icon" href="https://hoangtranson.github.io/my-blog/img/favicon.png">
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-118292467-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+</head>
+<body>
+  <div id="all">
+      <div class="container-fluid">
+          <div class="row row-offcanvas row-offcanvas-left">
+              <div id="sidebar" class="col-xs-6 col-sm-4 col-md-3 sidebar-offcanvas">
+  <div class="sidebar-content">
+    <h1 class="sidebar-heading"><a href="https://hoangtranson.github.io/my-blog/">Hoang Tran Blog</a></h1>
+    
+    <ul class="sidebar-menu">
+      
+      
+    </ul>
+    <p class="social">
+  
+  
+  
+  
+  
+  
+  
+  
+</p>
+
+
+    <div class="copyright">
+      <p class="credit">
+        
+        | Template by <a href="https://bootstrapious.com/free-templates" class="external">Bootstrapious.com</a>
+
+&amp; ported to Hugo by <a href="https://github.com/kishaningithub">Kishan B</a>
+
+      </p>
+    </div>
+  </div>
+</div>
+
+              
+<div class="col-xs-12 col-sm-8 col-md-9 content-column white-background">
+  <div class="small-navbar visible-xs">
+  <button type="button" data-toggle="offcanvas" class="btn btn-ghost pull-left"> <i class="fa fa-align-left"> </i>Menu</button>
+  <h1 class="small-navbar-heading"><a href="https://hoangtranson.github.io/my-blog/">Hoang Tran Blog</a></h1>
+</div>
+
+  <div class="row">
+    <div class="col-lg-8">
+      <div class="content-column-content">
+         <h1>Functional Programming Currying - Part 1</h1>
+         <p>In this section, I gonna talk about <strong>Currying</strong> in functional programming.</p>
+
+<p><img src="/my-blog/img/portfolio/content14/bg.jpg" alt="currying representation" /></p>
+
+<h3 id="table-of-content">Table of content</h3>
+
+<ul>
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#real_problem_solving">Real problems solving</a></li>
+</ul>
+
+<h4 id="introduction-a-name-introduction-a">Introduction<a name="introduction"></a></h4>
+
+<p><strong>Can&rsquo;t Live If Livin&rsquo; Is without You</strong> there are certain things one can live without until one acquires them. That is life.</p>
+
+<p>So, the concept is simple: You can call a function with fewer arguments than it expects. It returns a function that takes the remaining arguments.</p>
+
+<pre><code class="language-Javascript">const add = x =&gt; y =&gt; x + y;
+const increment = add(1);
+const addTen = add(10);
+
+increment(2); // 3
+addTen(2); // 12
+</code></pre>
+
+<p>The piece of code above take one argument and return a function. By calling this way, the return function will remember state from its parents via the closure. Calling it with full arguments at the same time is a bit of pain. However, we can use special helper function called <strong>curry</strong> in order to make defining and calling functions like this easier.</p>
+
+<pre><code class="language-Javascript">// curry :: ((a, b, ...) -&gt; c) -&gt; a -&gt; b -&gt; ... -&gt; c
+const curry = (fn) =&gt; {
+  const arity = fn.length;
+
+  return function $curry(...args) {
+    if (args.length &lt; arity) {
+      return $curry.bind(null, ...args);
+    }
+
+    return fn.call(null, ...args);
+  };
+};
+</code></pre>
+
+<h4 id="real-problems-solving-a-name-real-problem-solving-a">Real problems solving<a name="real_problem_solving"></a></h4>
+
+<p>from that awesome curry function, we can implement some functions below:</p>
+
+<pre><code class="language-Javascript">const replace = curry((what, replacement, s) =&gt; s.replace(what, replacement));
+const upperCase = l =&gt; l.toUpperCase();
+const lowerCase = l =&gt; l.toUpperCase();
+const replaceFirstCharTo = replace(/(^|\s)\S/g); // (replacement, s) =&gt; s.replace(/[aeiou]/ig, replacement)
+const capitalFirstChar = replaceFirstCharTo(upperCase); // s =&gt; s.replace(/[aeiou]/ig, upperCase)
+
+capitalFirstChar(lowerCase('functional progRamming CuRrying.')); // &quot;Functional Programming Currying.&quot;
+</code></pre>
+
+<p>This one, I tried to capital first char in each letter. This way will help us to reuse code in the future and clear to developer why upon use.</p>
+
+<p>Or look at another example:</p>
+
+<pre><code class="language-Javascript">const match = curry((what, s) =&gt; s.match(what));
+const replace = curry((what, replacement, s) =&gt; s.replace(what, replacement));
+const filter = curry((f, xs) =&gt; xs.filter(f));
+const map = curry((f, xs) =&gt; xs.map(f));
+
+match(/r/g, 'hello world'); // [ 'r' ]
+
+const hasLetterR = match(/r/g); // x =&gt; x.match(/r/g)
+hasLetterR('hello world'); // [ 'r' ]
+hasLetterR('just j and s and t etc'); // null
+
+filter(hasLetterR, ['rock and roll', 'smooth jazz']); // ['rock and roll']
+
+const removeStringsWithoutRs = filter(hasLetterR); // xs =&gt; xs.filter(x =&gt; x.match(/r/g))
+removeStringsWithoutRs(['rock and roll', 'smooth jazz', 'drum circle']); // ['rock and roll', 'drum circle']
+
+const noVowels = replace(/[aeiou]/ig); // (r,x) =&gt; x.replace(/[aeiou]/ig, r)
+const censored = noVowels('*'); // x =&gt; x.replace(/[aeiou]/ig, '*')
+censored('Chocolate Rain'); // 'Ch*c*l*t* R**n'
+</code></pre>
+         <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "https-hoangtranson-github-io-my-blog" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+      </div>
+    </div>
+  </div>
+</div>
+
+          </div>
+      </div>
+  </div>
+  <script src="https://hoangtranson.github.io/my-blog/js/jquery.min.js"></script>
+<script src="https://hoangtranson.github.io/my-blog/js/bootstrap.min.js"></script>
+<script src="https://hoangtranson.github.io/my-blog/js/jquery.cookie.js"> </script>
+<script src="https://hoangtranson.github.io/my-blog/js/ekko-lightbox.js"></script>
+<script src="https://hoangtranson.github.io/my-blog/js/jquery.scrollTo.min.js"></script>
+<script src="https://hoangtranson.github.io/my-blog/js/masonry.pkgd.min.js"></script>
+<script src="https://hoangtranson.github.io/my-blog/js/imagesloaded.pkgd.min.js"></script>
+<script src="https://hoangtranson.github.io/my-blog/js/owl.carousel.min.js"></script>
+<script src="https://hoangtranson.github.io/my-blog/js/front.js"></script>
+
+</body>
+</html>
