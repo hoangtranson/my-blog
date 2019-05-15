@@ -5,7 +5,7 @@ title = "Hoang Tran Blog"
 theme = "cupper-hugo-theme-master"
 googleAnalytics = "UA-118292467-1"
 disqusShortname = "https-hoangtranson-github-io-my-blog"
-enableGitInfo = true
+enableGitInfo = false
 
 [taxonomies]
   tag = "tags"
@@ -17,13 +17,8 @@ enableGitInfo = true
   quality = 99
 
 [params]
-  description = "An accessibility-friendly Hugo theme, ported from the [original Cupper](https://github.com/ThePacielloGroup/cupper) project."
-  homeMetaContent = "An accessibility-friendly Hugo theme, ported from the original Cupper project."
-  footer = "Made with [Hugo](https://gohugo.io/). Themed by [Cupper](https://github.com/zwbetz-gh/cupper-hugo-theme). Deployed to [Netlify](https://www.netlify.com/)."
-  # For more date formats see https://gohugo.io/functions/format/
-  dateFormat = "Jan 2, 2006"
-  codePenUser = "someUser"
-  katex = true
+  description = "Tran Son Hoang Blog"
+  homeMetaContent = "Tran Son Hoang Blog"
 
 [menu]
   [[menu.nav]]
@@ -31,18 +26,11 @@ enableGitInfo = true
     url = "/"
     weight = 1
   [[menu.nav]]
-    name = "Blog"
-    url = "/post/"
+    name = "Blogs"
+    url = "/blogs/"
     weight = 2
   [[menu.nav]]
     name = "Tags"
     url = "/tags/"
     weight = 3
-  [[menu.nav]]
-    name = "About"
-    url = "/about/"
-    weight = 4
-  [[menu.nav]]
-    name = "RSS"
-    url = "/index.xml"
-    weight = 5
+

@@ -3,7 +3,7 @@
 echo -e "\033[0;32mDeploying updates to GitHub...\033[0m"
 
 # Build the project.
-hugo -t hugo-creative-portfolio-theme-master  # if using a theme, replace with `hugo -t <YOURTHEME>`
+hugo -t cupper-hugo-theme-master  # if using a theme, replace with `hugo -t <YOURTHEME>`
 
 # Go To Public folder
 cd public

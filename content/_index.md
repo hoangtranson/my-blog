@@ -1,7 +1,7 @@
-+++
-date = "2016-11-05T21:05:33+05:30"
-title = "About me: A Frontend Engineering and Software Philosopher"
-+++
+---
+date: "2016-11-05T21:05:33+05:30"
+title: "About me: A Frontend Engineering and Software Philosopher"
+---
 
 Hey! I'm Hoang, a front-end developer from Ho Chi Minh VietNam.
 
