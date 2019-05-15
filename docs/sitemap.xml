@@ -36,6 +36,18 @@
   </url>
   
   <url>
+    <loc>https://hoangtranson.github.io/my-blog/</loc>
+    <lastmod>2018-04-30T17:00:00+07:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://hoangtranson.github.io/my-blog/portfolio/</loc>
+    <lastmod>2018-04-30T17:00:00+07:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://hoangtranson.github.io/my-blog/portfolio/work2/</loc>
     <lastmod>2018-04-29T20:00:00+07:00</lastmod>
   </url>
@@ -57,18 +69,6 @@
   
   <url>
     <loc>https://hoangtranson.github.io/my-blog/categories/</loc>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://hoangtranson.github.io/my-blog/</loc>
-    <lastmod>2018-04-30T17:00:00+07:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://hoangtranson.github.io/my-blog/portfolio/</loc>
-    <lastmod>2018-04-30T17:00:00+07:00</lastmod>
     <priority>0</priority>
   </url>
   
