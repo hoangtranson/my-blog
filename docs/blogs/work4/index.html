@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
   <meta name="generator" content="Hugo 0.55.5" />
-  <link rel="canonical" href="https://hoangtranson.github.io/my-blog/tags/">
+  <link rel="canonical" href="https://hoangtranson.github.io/my-blog/blogs/work4/">
 
   
 
@@ -32,7 +32,7 @@
 
   
   
-  <title>Tags | Hoang Tran Blog</title>
+  <title>How to merge old commits to only one commit | Hoang Tran Blog</title>
 </head>
 
   <body>
@@ -181,7 +181,7 @@
       
       
       
-      <a href="/my-blog/tags/" aria-current="page">
+      <a href="/my-blog/tags/" >
         <svg class="bookmark-icon" aria-hidden="true" focusable="false" viewBox="0 0 40 50">
           <use xlink:href="#bookmark"></use>
         </svg>
@@ -197,56 +197,39 @@
         <div>
           
   <main id="main">
-    <h1>Tags</h1>
-    <ul class="patterns-list">
-      
-      
-        
-        
-        
-        <li>
-          <h2>
-            <a href="https://hoangtranson.github.io/my-blog/tags/command-line/">
-              <svg class="tag-icon" aria-hidden="true" viewBox="0 0 177.16535 177.16535" focusable="false">
-                <use xlink:href="#tag"></use>
-              </svg>
-              (1) command-line
-            </a>
-          </h2>
-        </li>
-        
-      
-        
-        
-        
-        <li>
-          <h2>
-            <a href="https://hoangtranson.github.io/my-blog/tags/hugo/">
-              <svg class="tag-icon" aria-hidden="true" viewBox="0 0 177.16535 177.16535" focusable="false">
-                <use xlink:href="#tag"></use>
-              </svg>
-              (1) hugo
-            </a>
-          </h2>
-        </li>
-        
-      
-        
-        
-        
-        <li>
-          <h2>
-            <a href="https://hoangtranson.github.io/my-blog/tags/theme/">
-              <svg class="tag-icon" aria-hidden="true" viewBox="0 0 177.16535 177.16535" focusable="false">
-                <use xlink:href="#tag"></use>
-              </svg>
-              (1) theme
-            </a>
-          </h2>
-        </li>
-        
-      
-    </ul>
+    <h1>How to merge old commits to only one commit</h1>
+    <p>I face this problem a lot in my projects and here is the way that I resolve it.</p>
+
+<h3 id="table-of-content">Table of content</h3>
+
+<ul>
+<li><a href="#problem">Problem</a></li>
+<li><a href="#solution">Solution</a></li>
+</ul>
+
+<h4 id="problem-a-name-problem-a">Problem <a name="problem"></a></h4>
+
+<p>During my projects every feature I did, I created their own branch to do that feature and <strong>git commit</strong> a lot during implementation.</p>
+
+<p><img src="/my-blog/img/portfolio/content4/img1.jpg" alt="a lot of commit" /></p>
+
+<p>As you can see from photo above. I have there commits and two of them were dummy commit. So As a developer when I finished my ticket, I wanna merge all commits into only one.</p>
+
+<p>This help a lot of in building note change in Jenkin every time I deploy new code to testing environment and also I got a meaning text in commit on Github.</p>
+
+<h4 id="solution-a-name-solution-a">Solution <a name="solution"></a></h4>
+
+<p>So I came to quite simple solution by command line</p>
+
+<p>I reset to first commit on my branch</p>
+
+<p><img src="/my-blog/img/portfolio/content4/img2.jpeg" alt="reset to first commit" /></p>
+
+<p>Then I re-commit it again.</p>
+
+<p><img src="/my-blog/img/portfolio/content4/img3.jpeg" alt="general steps" /></p>
+
+<p>Quite simple huh?</p>
   </main>
 
           <footer role="contentinfo">

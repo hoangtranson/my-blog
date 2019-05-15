@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
   <meta name="generator" content="Hugo 0.55.5" />
-  <link rel="canonical" href="https://hoangtranson.github.io/my-blog/tags/">
+  <link rel="canonical" href="https://hoangtranson.github.io/my-blog/blogs/work3/">
 
   
 
@@ -32,7 +32,7 @@
 
   
   
-  <title>Tags | Hoang Tran Blog</title>
+  <title>Integrate custom font svg to font-awesome | Hoang Tran Blog</title>
 </head>
 
   <body>
@@ -181,7 +181,7 @@
       
       
       
-      <a href="/my-blog/tags/" aria-current="page">
+      <a href="/my-blog/tags/" >
         <svg class="bookmark-icon" aria-hidden="true" focusable="false" viewBox="0 0 40 50">
           <use xlink:href="#bookmark"></use>
         </svg>
@@ -197,56 +197,87 @@
         <div>
           
   <main id="main">
-    <h1>Tags</h1>
-    <ul class="patterns-list">
-      
-      
-        
-        
-        
-        <li>
-          <h2>
-            <a href="https://hoangtranson.github.io/my-blog/tags/command-line/">
-              <svg class="tag-icon" aria-hidden="true" viewBox="0 0 177.16535 177.16535" focusable="false">
-                <use xlink:href="#tag"></use>
-              </svg>
-              (1) command-line
-            </a>
-          </h2>
-        </li>
-        
-      
-        
-        
-        
-        <li>
-          <h2>
-            <a href="https://hoangtranson.github.io/my-blog/tags/hugo/">
-              <svg class="tag-icon" aria-hidden="true" viewBox="0 0 177.16535 177.16535" focusable="false">
-                <use xlink:href="#tag"></use>
-              </svg>
-              (1) hugo
-            </a>
-          </h2>
-        </li>
-        
-      
-        
-        
-        
-        <li>
-          <h2>
-            <a href="https://hoangtranson.github.io/my-blog/tags/theme/">
-              <svg class="tag-icon" aria-hidden="true" viewBox="0 0 177.16535 177.16535" focusable="false">
-                <use xlink:href="#tag"></use>
-              </svg>
-              (1) theme
-            </a>
-          </h2>
-        </li>
-        
-      
-    </ul>
+    <h1>Integrate custom font svg to font-awesome</h1>
+    <p>I have huge trouble with these stuff in my projects before.</p>
+
+<h3 id="table-of-content">Table of content</h3>
+
+<ul>
+<li><a href="#problem">Problem</a></li>
+<li><a href="#solution">Solution</a></li>
+</ul>
+
+<h4 id="problem-a-name-problem-a">Problem <a name="problem"></a></h4>
+
+<p>Almost my ex-projects used <a href="https://zeplin.io/">Zeplin</a> to keep track designs for both QC and Developer team during project time.</p>
+
+<p>The best feature of Zeplin has to be the Guideline page with all the colors, icons and fonts. So, it support developers reducing a lot of effort in implementation. The problem here is that we never have 1 front-end developer in project from start first RC to final RC right?</p>
+
+<p>Maybe ex-front-end developer used svg tag to generate icon or some tools like <a href="https://glyphter.com/">Glyphter</a> to create custom font package and put it into project. But, another Front-end developer will use another technique like <a href="https://icomoon.io/">Ico moon</a>.</p>
+
+<p>As a result, time to time we will get different font sources in our poject and it is hard to maintain. Just back to my ex-project named <a href="http://mbc.net/">MBC</a> which is very large social network for Arab. I created custom font from Zeplin by using Glyphter and after 4 months I moved to another project and this made font source maintainent hard for another frontend guy since Glyphter didn&rsquo;t have config file for old font which using to add new font to.</p>
+
+<p>It motivates me a lot to find out another way to unique way we create font icon from Zeplin and that situation will never happen again in the future. One famous quote I love is</p>
+
+<blockquote>
+<p>always code as if the guy who ends up maintaining your code will be a violent psychopath who knows where you live from <strong>Martin Golding</strong>.</p>
+</blockquote>
+
+<p>as the only way to improve ourself is learn from mistake right?</p>
+
+<p>Nowadays, We have numerous ways to add icons to a website, and I think the most popular way is to use <a href="https://fontawesome.com/icons?d=gallery">Font Awesome</a>.</p>
+
+<p>I found a way to integrate font icon (SVG file) from Zeplin to Font Awesome library in pmy project is to use a tool called <a href="https://www.calligraphr.com/en/">Calligraphr</a>. It allows us to create some code like this</p>
+
+<pre><code>&lt;i class=&quot;fa fa-lol&quot;/&gt;
+</code></pre>
+
+<p>and we just put all our custom font icon into a unique css file. we will never have many font source in out project during a year again.</p>
+
+<h4 id="solution-a-name-solution-a">Solution <a name="solution"></a></h4>
+
+<p>I tried to list out most of step here.</p>
+
+<p>Step 1: we login to Calligraphr site and download template for your font (I prefer img template).</p>
+
+<p><img src="/my-blog/img/portfolio/content3/step1.jpg" alt="step 1" /></p>
+
+<p>Step 2: after we have template. just put image into template by photoshop or another tools. then export as img file.</p>
+
+<p><img src="/my-blog/img/portfolio/content3/step2.jpg" alt="step 2" /></p>
+
+<p>Step 3: upload the image template back to Calligraphr</p>
+
+<p><img src="/my-blog/img/portfolio/content3/step3.jpg" alt="step 3" /></p>
+
+<p>Step 4: at <strong>Build font</strong> tab, just build your font</p>
+
+<p><img src="/my-blog/img/portfolio/content3/step4.jpg" alt="step 4" /></p>
+
+<p>Step 5: click to link and get file otf</p>
+
+<p><img src="/my-blog/img/portfolio/content3/step5.jpg" alt="step 5" /></p>
+
+<p>Step 6: put it to your css file</p>
+
+<pre><code>@font-face {
+    font-family: 'FontMoreAwesome';
+    src: url('fonts/Font_awesome_more-Regular.otf');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.fa-troll:before {
+    font-family: FontMoreAwesome;
+    content: &quot;0&quot;;
+}
+</code></pre>
+
+<p><img src="/my-blog/img/portfolio/content3/step6.jpg" alt="step 6" /></p>
+
+<p>Step 7: Enjoy your day ^^</p>
+
+<p><img src="/my-blog/img/portfolio/content3/step7.jpg" alt="step 7" /></p>
   </main>
 
           <footer role="contentinfo">

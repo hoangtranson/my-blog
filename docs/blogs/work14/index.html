@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
   <meta name="generator" content="Hugo 0.55.5" />
-  <link rel="canonical" href="https://hoangtranson.github.io/my-blog/tags/">
+  <link rel="canonical" href="https://hoangtranson.github.io/my-blog/blogs/work14/">
 
   
 
@@ -32,7 +32,7 @@
 
   
   
-  <title>Tags | Hoang Tran Blog</title>
+  <title>Functional Programming Currying - Part 1 | Hoang Tran Blog</title>
 </head>
 
   <body>
@@ -181,7 +181,7 @@
       
       
       
-      <a href="/my-blog/tags/" aria-current="page">
+      <a href="/my-blog/tags/" >
         <svg class="bookmark-icon" aria-hidden="true" focusable="false" viewBox="0 0 40 50">
           <use xlink:href="#bookmark"></use>
         </svg>
@@ -197,56 +197,85 @@
         <div>
           
   <main id="main">
-    <h1>Tags</h1>
-    <ul class="patterns-list">
-      
-      
-        
-        
-        
-        <li>
-          <h2>
-            <a href="https://hoangtranson.github.io/my-blog/tags/command-line/">
-              <svg class="tag-icon" aria-hidden="true" viewBox="0 0 177.16535 177.16535" focusable="false">
-                <use xlink:href="#tag"></use>
-              </svg>
-              (1) command-line
-            </a>
-          </h2>
-        </li>
-        
-      
-        
-        
-        
-        <li>
-          <h2>
-            <a href="https://hoangtranson.github.io/my-blog/tags/hugo/">
-              <svg class="tag-icon" aria-hidden="true" viewBox="0 0 177.16535 177.16535" focusable="false">
-                <use xlink:href="#tag"></use>
-              </svg>
-              (1) hugo
-            </a>
-          </h2>
-        </li>
-        
-      
-        
-        
-        
-        <li>
-          <h2>
-            <a href="https://hoangtranson.github.io/my-blog/tags/theme/">
-              <svg class="tag-icon" aria-hidden="true" viewBox="0 0 177.16535 177.16535" focusable="false">
-                <use xlink:href="#tag"></use>
-              </svg>
-              (1) theme
-            </a>
-          </h2>
-        </li>
-        
-      
-    </ul>
+    <h1>Functional Programming Currying - Part 1</h1>
+    <p>In this section, I gonna talk about <strong>Currying</strong> in functional programming.</p>
+
+<p><img src="/my-blog/img/portfolio/content14/bg.jpg" alt="currying representation" /></p>
+
+<h3 id="table-of-content">Table of content</h3>
+
+<ul>
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#real_problem_solving">Real problems solving</a></li>
+</ul>
+
+<h4 id="introduction-a-name-introduction-a">Introduction<a name="introduction"></a></h4>
+
+<p><strong>Can&rsquo;t Live If Livin&rsquo; Is without You</strong> there are certain things one can live without until one acquires them. That is life.</p>
+
+<p>So, the concept is simple: You can call a function with fewer arguments than it expects. It returns a function that takes the remaining arguments.</p>
+
+<pre><code class="language-Javascript">const add = x =&gt; y =&gt; x + y;
+const increment = add(1);
+const addTen = add(10);
+
+increment(2); // 3
+addTen(2); // 12
+</code></pre>
+
+<p>The piece of code above take one argument and return a function. By calling this way, the return function will remember state from its parents via the closure. Calling it with full arguments at the same time is a bit of pain. However, we can use special helper function called <strong>curry</strong> in order to make defining and calling functions like this easier.</p>
+
+<pre><code class="language-Javascript">// curry :: ((a, b, ...) -&gt; c) -&gt; a -&gt; b -&gt; ... -&gt; c
+const curry = (fn) =&gt; {
+  const arity = fn.length;
+
+  return function $curry(...args) {
+    if (args.length &lt; arity) {
+      return $curry.bind(null, ...args);
+    }
+
+    return fn.call(null, ...args);
+  };
+};
+</code></pre>
+
+<h4 id="real-problems-solving-a-name-real-problem-solving-a">Real problems solving<a name="real_problem_solving"></a></h4>
+
+<p>from that awesome curry function, we can implement some functions below:</p>
+
+<pre><code class="language-Javascript">const replace = curry((what, replacement, s) =&gt; s.replace(what, replacement));
+const upperCase = l =&gt; l.toUpperCase();
+const lowerCase = l =&gt; l.toUpperCase();
+const replaceFirstCharTo = replace(/(^|\s)\S/g); // (replacement, s) =&gt; s.replace(/[aeiou]/ig, replacement)
+const capitalFirstChar = replaceFirstCharTo(upperCase); // s =&gt; s.replace(/[aeiou]/ig, upperCase)
+
+capitalFirstChar(lowerCase('functional progRamming CuRrying.')); // &quot;Functional Programming Currying.&quot;
+</code></pre>
+
+<p>This one, I tried to capital first char in each letter. This way will help us to reuse code in the future and clear to developer why upon use.</p>
+
+<p>Or look at another example:</p>
+
+<pre><code class="language-Javascript">const match = curry((what, s) =&gt; s.match(what));
+const replace = curry((what, replacement, s) =&gt; s.replace(what, replacement));
+const filter = curry((f, xs) =&gt; xs.filter(f));
+const map = curry((f, xs) =&gt; xs.map(f));
+
+match(/r/g, 'hello world'); // [ 'r' ]
+
+const hasLetterR = match(/r/g); // x =&gt; x.match(/r/g)
+hasLetterR('hello world'); // [ 'r' ]
+hasLetterR('just j and s and t etc'); // null
+
+filter(hasLetterR, ['rock and roll', 'smooth jazz']); // ['rock and roll']
+
+const removeStringsWithoutRs = filter(hasLetterR); // xs =&gt; xs.filter(x =&gt; x.match(/r/g))
+removeStringsWithoutRs(['rock and roll', 'smooth jazz', 'drum circle']); // ['rock and roll', 'drum circle']
+
+const noVowels = replace(/[aeiou]/ig); // (r,x) =&gt; x.replace(/[aeiou]/ig, r)
+const censored = noVowels('*'); // x =&gt; x.replace(/[aeiou]/ig, '*')
+censored('Chocolate Rain'); // 'Ch*c*l*t* R**n'
+</code></pre>
   </main>
 
           <footer role="contentinfo">
