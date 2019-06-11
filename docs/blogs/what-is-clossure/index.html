@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
   <meta name="generator" content="Hugo 0.55.5" />
-  <link rel="canonical" href="https://hoangtranson.github.io/my-blog/blogs/">
+  <link rel="canonical" href="https://hoangtranson.github.io/my-blog/blogs/what-is-clossure/">
 
   
 
@@ -32,7 +32,7 @@
 
   
   
-  <title>Blogs | Hoang Tran Blog</title>
+  <title>What is clossure? | Hoang Tran Blog</title>
 </head>
 
   <body>
@@ -175,7 +175,7 @@
       
       
       
-      <a href="/my-blog/blogs/" aria-current="page">
+      <a href="/my-blog/blogs/" >
         <svg class="bookmark-icon" aria-hidden="true" focusable="false" viewBox="0 0 40 50">
           <use xlink:href="#bookmark"></use>
         </svg>
@@ -204,142 +204,76 @@
         <div>
           
   <main id="main">
-    <h1>Blogs</h1>
-    <ul class="patterns-list">
+    <h1>What is clossure?</h1>
+    <p>In this section, I gonna talk about <strong>clossure</strong> in my view.</p>
+
+<h3 id="table-of-content">Table of content</h3>
+
+<ul>
+<li><a href="#variable_scope">Variable Scope</a></li>
+<li><a href="#local_scope">A closure is a persistent local variable scope</a></li>
+</ul>
+
+<h4 id="variable-scope-a-name-variable-scope-a">Variable Scope <a name="variable_scope"></a></h4>
+
+<p>Everyone knows that when we decalre a variable, then it will have a scope. Basically, it is only exist within the block or function in which you put them in.</p>
+
+<pre><code class="language-javascript">function(){
+    const a = 10;
+    console.log(a) // 10
+}
+
+console.log(a) // Error Unexpected token ( or Uncaught ReferenceError: a is not defined
+</code></pre>
+
+<p>So <code>a</code> got error because there is no variable <code>a</code> in current scope or parents scope. So, Here when we use <code>a</code> basically every languages will look for <code>a</code> at current scope then to parents scope until the root scope. And, If they cannot find any <code>a</code> then throw error like above.</p>
+
+<p>Rewrite the code above:</p>
+
+<pre><code class="language-javascript">const a = 10;
+function(){
+    console.log(a) // 10
+}
+
+console.log(a) // 10
+</code></pre>
+
+<h4 id="a-closure-is-a-persistent-local-variable-scope-a-name-local-scope-a">A closure is a persistent local variable scope <a name="local_scope"></a></h4>
+
+<p>What does it mean?</p>
+
+<p>This means that closure is a persistent scope which holds the local variable even after the code has executed.</p>
+
+<pre><code class="language-javascript">const outer = () =&gt; {
+    const a = 1;
+    const inner = () =&gt; {
+        console.log(a);
+    }
+
+    return inner;
+}
+
+const func = outer();
+func(); // 1
+</code></pre>
+
+<p>Here we have a function inside a function. the <code>inner</code> function gains access to <code>outer</code> function local variable <code>a</code>.</p>
+
+<p>Normally When <code>outer</code> was triggered then all its local variables should blow away. But in the example above the <code>func</code> is triggered and still give us value 1. This means that <strong><em>all of the variables that were in scope when inner was defined also persist</em></strong>.</p>
     
-      <li>
-        <h2>
-          <a href="https://hoangtranson.github.io/my-blog/blogs/scalable-angular-architecture/">
-            <svg class="bookmark" aria-hidden="true" viewBox="0 0 40 50" focusable="false">
-              <use xlink:href="#bookmark"></use>
-            </svg>
-            Design a Scalable Angular Architecture
-          </a>
-        </h2>
-      </li>        
-    
-      <li>
-        <h2>
-          <a href="https://hoangtranson.github.io/my-blog/blogs/refactor-html-by-ngtemplate/">
-            <svg class="bookmark" aria-hidden="true" viewBox="0 0 40 50" focusable="false">
-              <use xlink:href="#bookmark"></use>
-            </svg>
-            Refactor HTML by ng-template
-          </a>
-        </h2>
-      </li>        
-    
-      <li>
-        <h2>
-          <a href="https://hoangtranson.github.io/my-blog/blogs/what-is-clossure/">
-            <svg class="bookmark" aria-hidden="true" viewBox="0 0 40 50" focusable="false">
-              <use xlink:href="#bookmark"></use>
-            </svg>
-            What is clossure?
-          </a>
-        </h2>
-      </li>        
-    
-      <li>
-        <h2>
-          <a href="https://hoangtranson.github.io/my-blog/blogs/integrate-custom-font-svg-to-font-awesome/">
-            <svg class="bookmark" aria-hidden="true" viewBox="0 0 40 50" focusable="false">
-              <use xlink:href="#bookmark"></use>
-            </svg>
-            Integrate custom font svg to font-awesome
-          </a>
-        </h2>
-      </li>        
-    
-      <li>
-        <h2>
-          <a href="https://hoangtranson.github.io/my-blog/blogs/how-to-add-comment-to-blog-content/">
-            <svg class="bookmark" aria-hidden="true" viewBox="0 0 40 50" focusable="false">
-              <use xlink:href="#bookmark"></use>
-            </svg>
-            How To Add Commment To Blog Content
-          </a>
-        </h2>
-      </li>        
-    
-      <li>
-        <h2>
-          <a href="https://hoangtranson.github.io/my-blog/blogs/how-to-create-a-blog-and-deploy-to-github/">
-            <svg class="bookmark" aria-hidden="true" viewBox="0 0 40 50" focusable="false">
-              <use xlink:href="#bookmark"></use>
-            </svg>
-            How To Create A Blog and Deploy to Github
-          </a>
-        </h2>
-      </li>        
-    
-      <li>
-        <h2>
-          <a href="https://hoangtranson.github.io/my-blog/blogs/pure-function-in-javascript/">
-            <svg class="bookmark" aria-hidden="true" viewBox="0 0 40 50" focusable="false">
-              <use xlink:href="#bookmark"></use>
-            </svg>
-            Pure function in Javascript
-          </a>
-        </h2>
-      </li>        
-    
-      <li>
-        <h2>
-          <a href="https://hoangtranson.github.io/my-blog/blogs/javascript-trick-p1/">
-            <svg class="bookmark" aria-hidden="true" viewBox="0 0 40 50" focusable="false">
-              <use xlink:href="#bookmark"></use>
-            </svg>
-            Javascript Trick - 1
-          </a>
-        </h2>
-      </li>        
-    
-      <li>
-        <h2>
-          <a href="https://hoangtranson.github.io/my-blog/blogs/javascript-style-guide/">
-            <svg class="bookmark" aria-hidden="true" viewBox="0 0 40 50" focusable="false">
-              <use xlink:href="#bookmark"></use>
-            </svg>
-            JavaScript Style Guide
-          </a>
-        </h2>
-      </li>        
-    
-      <li>
-        <h2>
-          <a href="https://hoangtranson.github.io/my-blog/blogs/how-to-merge-old-commits-into-one/">
-            <svg class="bookmark" aria-hidden="true" viewBox="0 0 40 50" focusable="false">
-              <use xlink:href="#bookmark"></use>
-            </svg>
-            How to merge old commits into one
-          </a>
-        </h2>
-      </li>        
-    
-      <li>
-        <h2>
-          <a href="https://hoangtranson.github.io/my-blog/blogs/clean-code-javascript/">
-            <svg class="bookmark" aria-hidden="true" viewBox="0 0 40 50" focusable="false">
-              <use xlink:href="#bookmark"></use>
-            </svg>
-            Clean Code Javascript
-          </a>
-        </h2>
-      </li>        
-    
-      <li>
-        <h2>
-          <a href="https://hoangtranson.github.io/my-blog/blogs/css-specificity/">
-            <svg class="bookmark" aria-hidden="true" viewBox="0 0 40 50" focusable="false">
-              <use xlink:href="#bookmark"></use>
-            </svg>
-            CSS Specificity
-          </a>
-        </h2>
-      </li>        
-    
-    </ul>
+<div id="disqus_thread"></div>
+<script>
+    (function () {
+        var d = document, s = d.createElement('script');
+        s.src = 'https://https-hoangtranson-github-io-my-blog.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the
+    <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript> 
+
   </main>
 
           <footer role="contentinfo">

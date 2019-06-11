@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
   <meta name="generator" content="Hugo 0.55.5" />
-  <link rel="canonical" href="https://hoangtranson.github.io/my-blog/blogs/">
+  <link rel="canonical" href="https://hoangtranson.github.io/my-blog/blogs/refactor-html-by-ngtemplate/">
 
   
 
@@ -32,7 +32,7 @@
 
   
   
-  <title>Blogs | Hoang Tran Blog</title>
+  <title>Refactor HTML by ng-template | Hoang Tran Blog</title>
 </head>
 
   <body>
@@ -175,7 +175,7 @@
       
       
       
-      <a href="/my-blog/blogs/" aria-current="page">
+      <a href="/my-blog/blogs/" >
         <svg class="bookmark-icon" aria-hidden="true" focusable="false" viewBox="0 0 40 50">
           <use xlink:href="#bookmark"></use>
         </svg>
@@ -204,142 +204,78 @@
         <div>
           
   <main id="main">
-    <h1>Blogs</h1>
-    <ul class="patterns-list">
+    <h1>Refactor HTML by ng-template</h1>
     
-      <li>
-        <h2>
-          <a href="https://hoangtranson.github.io/my-blog/blogs/scalable-angular-architecture/">
-            <svg class="bookmark" aria-hidden="true" viewBox="0 0 40 50" focusable="false">
-              <use xlink:href="#bookmark"></use>
-            </svg>
-            Design a Scalable Angular Architecture
-          </a>
-        </h2>
-      </li>        
+
+<h3 id="table-of-content">Table of content</h3>
+
+<ul>
+<li><a href="#introduction">Introduction ng-template</a></li>
+<li><a href="#problem">Problem</a></li>
+<li><a href="#solution">Solution with ng-template</a></li>
+</ul>
+
+<h4 id="introduction-ng-template-a-name-introduction-a">Introduction ng-template<a name="introduction"></a></h4>
+
+<p>The <code>&lt;ng-template&gt;</code> is an Angular element for rendering HTML. It is never displayed directly. In fact, before rendering the view, Angular replaces the <code>&lt;ng-template&gt;</code> and its contents with a comment.</p>
+
+<p>see <a href="https://angular.io/guide/structural-directives#the-ng-template">here</a> for more information.</p>
+
+<h4 id="problem-a-name-problem-a">Problem <a name="problem"></a></h4>
+
+<p>In the angular component there are many pieces of code repeatedly that makes your template long. This causes us hard to maintain our code base.</p>
+
+<p>I have refactored a lot of HTML template like that 250 lines or 500 lines to nearly 100 lines only by using <code>ng-template</code>.</p>
+
+<h4 id="solution-with-ng-template-a-name-solution-a">Solution with ng-template <a name="solution"></a></h4>
+
+<p>So here is what I did:</p>
+
+<p>1.Find repeated code.</p>
+
+<p>2.Put it into <code>ng-template</code></p>
+
+<pre><code>```html
+    &lt;ng-template #carTemplate let-item&gt;
+        &lt;div class=&quot;container&quot;&gt;
+            &lt;div class=&quot;row&quot;&gt;
+            &lt;div class=&quot;col-12&quot;&gt;
+                &lt;a class=&quot;content1&quot; data-toggle=&quot;collapse&quot; href=&quot;{{(globalUrl$ | async)}}/{{item.id}}&quot;&gt;
+                &lt;div class=&quot;row pl-5 pl-md-0&quot;&gt;
+                    &lt;div class=&quot;col-10 px-0&quot;&gt;
+                        &lt;span&gt;{{ item.carName }}&lt;/span&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+                &lt;/a&gt;
+            &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/ng-template&gt;
+```
+</code></pre>
+
+<p>3.Replace the current html code by our new template</p>
+
+<pre><code>```html
+...
+    &lt;ng-container *ngTemplateOutlet=&quot;carTemplate; context: {$implicit: {carName: 'bmw', id: 1}}&quot;&gt;&lt;/ng-container&gt;
+```
+</code></pre>
+
     
-      <li>
-        <h2>
-          <a href="https://hoangtranson.github.io/my-blog/blogs/refactor-html-by-ngtemplate/">
-            <svg class="bookmark" aria-hidden="true" viewBox="0 0 40 50" focusable="false">
-              <use xlink:href="#bookmark"></use>
-            </svg>
-            Refactor HTML by ng-template
-          </a>
-        </h2>
-      </li>        
-    
-      <li>
-        <h2>
-          <a href="https://hoangtranson.github.io/my-blog/blogs/what-is-clossure/">
-            <svg class="bookmark" aria-hidden="true" viewBox="0 0 40 50" focusable="false">
-              <use xlink:href="#bookmark"></use>
-            </svg>
-            What is clossure?
-          </a>
-        </h2>
-      </li>        
-    
-      <li>
-        <h2>
-          <a href="https://hoangtranson.github.io/my-blog/blogs/integrate-custom-font-svg-to-font-awesome/">
-            <svg class="bookmark" aria-hidden="true" viewBox="0 0 40 50" focusable="false">
-              <use xlink:href="#bookmark"></use>
-            </svg>
-            Integrate custom font svg to font-awesome
-          </a>
-        </h2>
-      </li>        
-    
-      <li>
-        <h2>
-          <a href="https://hoangtranson.github.io/my-blog/blogs/how-to-add-comment-to-blog-content/">
-            <svg class="bookmark" aria-hidden="true" viewBox="0 0 40 50" focusable="false">
-              <use xlink:href="#bookmark"></use>
-            </svg>
-            How To Add Commment To Blog Content
-          </a>
-        </h2>
-      </li>        
-    
-      <li>
-        <h2>
-          <a href="https://hoangtranson.github.io/my-blog/blogs/how-to-create-a-blog-and-deploy-to-github/">
-            <svg class="bookmark" aria-hidden="true" viewBox="0 0 40 50" focusable="false">
-              <use xlink:href="#bookmark"></use>
-            </svg>
-            How To Create A Blog and Deploy to Github
-          </a>
-        </h2>
-      </li>        
-    
-      <li>
-        <h2>
-          <a href="https://hoangtranson.github.io/my-blog/blogs/pure-function-in-javascript/">
-            <svg class="bookmark" aria-hidden="true" viewBox="0 0 40 50" focusable="false">
-              <use xlink:href="#bookmark"></use>
-            </svg>
-            Pure function in Javascript
-          </a>
-        </h2>
-      </li>        
-    
-      <li>
-        <h2>
-          <a href="https://hoangtranson.github.io/my-blog/blogs/javascript-trick-p1/">
-            <svg class="bookmark" aria-hidden="true" viewBox="0 0 40 50" focusable="false">
-              <use xlink:href="#bookmark"></use>
-            </svg>
-            Javascript Trick - 1
-          </a>
-        </h2>
-      </li>        
-    
-      <li>
-        <h2>
-          <a href="https://hoangtranson.github.io/my-blog/blogs/javascript-style-guide/">
-            <svg class="bookmark" aria-hidden="true" viewBox="0 0 40 50" focusable="false">
-              <use xlink:href="#bookmark"></use>
-            </svg>
-            JavaScript Style Guide
-          </a>
-        </h2>
-      </li>        
-    
-      <li>
-        <h2>
-          <a href="https://hoangtranson.github.io/my-blog/blogs/how-to-merge-old-commits-into-one/">
-            <svg class="bookmark" aria-hidden="true" viewBox="0 0 40 50" focusable="false">
-              <use xlink:href="#bookmark"></use>
-            </svg>
-            How to merge old commits into one
-          </a>
-        </h2>
-      </li>        
-    
-      <li>
-        <h2>
-          <a href="https://hoangtranson.github.io/my-blog/blogs/clean-code-javascript/">
-            <svg class="bookmark" aria-hidden="true" viewBox="0 0 40 50" focusable="false">
-              <use xlink:href="#bookmark"></use>
-            </svg>
-            Clean Code Javascript
-          </a>
-        </h2>
-      </li>        
-    
-      <li>
-        <h2>
-          <a href="https://hoangtranson.github.io/my-blog/blogs/css-specificity/">
-            <svg class="bookmark" aria-hidden="true" viewBox="0 0 40 50" focusable="false">
-              <use xlink:href="#bookmark"></use>
-            </svg>
-            CSS Specificity
-          </a>
-        </h2>
-      </li>        
-    
-    </ul>
+<div id="disqus_thread"></div>
+<script>
+    (function () {
+        var d = document, s = d.createElement('script');
+        s.src = 'https://https-hoangtranson-github-io-my-blog.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the
+    <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript> 
+
   </main>
 
           <footer role="contentinfo">

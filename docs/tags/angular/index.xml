@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>angular on Hoang Tran Blog</title>
+    <link>https://hoangtranson.github.io/my-blog/tags/angular/</link>
+    <description>Recent content in angular on Hoang Tran Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 01 Jun 2019 15:00:00 +0700</lastBuildDate>
+    
+	<atom:link href="https://hoangtranson.github.io/my-blog/tags/angular/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Design a Scalable Angular Architecture</title>
+      <link>https://hoangtranson.github.io/my-blog/blogs/scalable-angular-architecture/</link>
+      <pubDate>Sat, 01 Jun 2019 15:00:00 +0700</pubDate>
+      
+      <guid>https://hoangtranson.github.io/my-blog/blogs/scalable-angular-architecture/</guid>
+      <description>Table of content  Introduction State Management Component architecture One-way data flow Modules Configuration  Introduction  This article regarding to how to create a scalable angular project based on my experience from serveral angular projects.
+State Management  An effective state management is a crucial successfully key in large frontend applications. Normmally We call it is a store and an observable type that implemented using Rxjs and Redux Architecture.</description>
+    </item>
+    
+    <item>
+      <title>Refactor HTML by ng-template</title>
+      <link>https://hoangtranson.github.io/my-blog/blogs/refactor-html-by-ngtemplate/</link>
+      <pubDate>Tue, 15 Jan 2019 15:00:00 +0700</pubDate>
+      
+      <guid>https://hoangtranson.github.io/my-blog/blogs/refactor-html-by-ngtemplate/</guid>
+      <description>Table of content  Introduction ng-template Problem Solution with ng-template  Introduction ng-template The &amp;lt;ng-template&amp;gt; is an Angular element for rendering HTML. It is never displayed directly. In fact, before rendering the view, Angular replaces the &amp;lt;ng-template&amp;gt; and its contents with a comment.
+see here for more information.
+Problem  In the angular component there are many pieces of code repeatedly that makes your template long. This causes us hard to maintain our code base.</description>
+    </item>
+    
+  </channel>
+</rss>

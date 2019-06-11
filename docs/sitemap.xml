@@ -4,19 +4,46 @@
   
   <url>
     <loc>https://hoangtranson.github.io/my-blog/blogs/</loc>
-    <lastmod>2018-04-30T17:00:00+07:00</lastmod>
+    <lastmod>2019-06-01T15:00:00+07:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://hoangtranson.github.io/my-blog/blogs/scalable-angular-architecture/</loc>
+    <lastmod>2019-06-01T15:00:00+07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://hoangtranson.github.io/my-blog/tags/</loc>
+    <lastmod>2019-06-01T15:00:00+07:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://hoangtranson.github.io/my-blog/tags/angular/</loc>
+    <lastmod>2019-06-01T15:00:00+07:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://hoangtranson.github.io/my-blog/blogs/refactor-html-by-ngtemplate/</loc>
+    <lastmod>2019-01-15T15:00:00+07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://hoangtranson.github.io/my-blog/blogs/what-is-clossure/</loc>
+    <lastmod>2018-12-20T15:00:00+07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://hoangtranson.github.io/my-blog/tags/javascript/</loc>
+    <lastmod>2018-12-20T15:00:00+07:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://hoangtranson.github.io/my-blog/blogs/integrate-custom-font-svg-to-font-awesome/</loc>
     <lastmod>2018-04-30T17:00:00+07:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://hoangtranson.github.io/my-blog/tags/</loc>
-    <lastmod>2018-04-30T17:00:00+07:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -42,6 +69,11 @@
   </url>
   
   <url>
+    <loc>https://hoangtranson.github.io/my-blog/blogs/pure-function-in-javascript/</loc>
+    <lastmod>2018-04-05T12:00:00+07:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://hoangtranson.github.io/my-blog/</loc>
     <lastmod>2016-11-05T21:05:33+05:30</lastmod>
   </url>
@@ -64,20 +96,6 @@
   
   <url>
     <loc>https://hoangtranson.github.io/my-blog/blogs/javascript-trick-p1/</loc>
-  </url>
-  
-  <url>
-    <loc>https://hoangtranson.github.io/my-blog/blogs/pure-function-in-javascript/</loc>
-  </url>
-  
-  <url>
-    <loc>https://hoangtranson.github.io/my-blog/tags/javacript/</loc>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://hoangtranson.github.io/my-blog/tags/javascript/</loc>
-    <priority>0</priority>
   </url>
   
 </urlset>
